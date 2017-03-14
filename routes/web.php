@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
 /*
 |--------------------------------------------------------------------------
@@ -12,8 +14,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    redirect()->route('url_create');
 });
+
+Route::get('/home', function () {
+    return \Redirect::route('url_create');
+ //  redirect()->route('url_create');
+   // return view('links.create');
+})->middleware('auth')->name('home');
 
 /**
  * Admin routes
@@ -42,4 +50,11 @@ Route::group([
  */
 Auth::routes();
 
+
+Route::get('create', 'SystemController@create')->name('url_create');
+Route::post('create', 'SystemController@store')->name('url_store');
+
+/**
+ * Note. This should be the last url ever in this routes file.
+ */
 Route::get('/{link_hash}', 'SystemController@show');

@@ -14,7 +14,8 @@ class Link extends Model
      */
     protected $fillable = [
         'url',
-        'hash'
+        'hash',
+        'user_id'
     ];
 
 
@@ -22,18 +23,18 @@ class Link extends Model
      * Generate a link with a unique hash.
      *
      * @see generateUniqueHash
-     *
      * @param string $url
-     *
+     * @param int    $user_id
      * @return mixed
      */
-    public static function generate($url = '')
+    public static function generate($url = '', $user_id = 0)
     {
 
         $hash = self::generateUniqueHash();
         $link = Link::create([
-            'url'  => $url,
-            'hash' => $hash,
+            'url'     => $url,
+            'hash'    => $hash,
+            'user_id' => $user_id,
         ]);
 
         return $link;
