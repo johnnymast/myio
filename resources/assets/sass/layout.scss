@@ -1,0 +1,29 @@
+.background-black-transparent {
+	background-color: rgba(37, 49, 56, 0.9);
+}
+
+.fixed-nav {
+  margin: 0 20px;
+}
+
+.hero-background {
+    background: #3f00ff;
+    background: -webkit-linear-gradient(right, #3f00ff, #00dbde);
+    background: linear-gradient(to left, #3f00ff, #00dbde);
+}
+
+.color-is-white {
+	color: #fff;
+}
+
+.title {
+	font-size: 3.5rem;
+}
+
+.subtitle {
+	font-size: 2rem;
+}
+
+.nav-item a, a.nav-item {
+    color: #fff;
+}
