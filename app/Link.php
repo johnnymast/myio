@@ -54,4 +54,13 @@ class Link extends Model
 
         return $number;
     }
+
+    public function user() {
+        $this->hasOne('App\User');
+    }
+
+    public function hits() {
+        $this->hasMany('App\Hit');
+    }
+
 }
