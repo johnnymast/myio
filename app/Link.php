@@ -14,25 +14,27 @@ class Link extends Model
      */
     protected $fillable = [
         'url',
-        'hash'
+        'hash',
+        'user_id'
     ];
 
 
     /**
+     * Generate a link with a unique hash.
+     *
      * @see generateUniqueHash
-     *
      * @param string $url
-     *
+     * @param int    $user_id
      * @return mixed
      */
-    public static function generate($url = '')
+    public static function generate($url = '', $user_id = 0)
     {
 
         $hash = self::generateUniqueHash();
-
         $link = Link::create([
-            'url'  => $url,
-            'hash' => $hash,
+            'url'     => $url,
+            'hash'    => $hash,
+            'user_id' => $user_id,
         ]);
 
         return $link;
@@ -40,7 +42,7 @@ class Link extends Model
 
 
     /**
-     * Create a unique_id for a new account to use.
+     * Create a hash for this link to use.
      *
      * @return int
      */
@@ -53,5 +55,27 @@ class Link extends Model
         }
 
         return $number;
+    }
+
+
+    /**
+     * Return the user for this link.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * Return the hits for this link.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hits()
+    {
+        return $this->hasMany(Hit::class);
     }
 }
