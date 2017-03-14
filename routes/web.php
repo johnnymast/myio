@@ -13,6 +13,7 @@ ini_set('display_errors', true);
 |
 */
 
+
 Route::get('/', function () {
     return redirect()->route('url_create');
 });
@@ -25,29 +26,27 @@ Route::get('/home', function () {
  * Admin routes
  */
 Route::group([
-    'prefix'     => '/admin',
-    'middleware' => ['auth']
+	'prefix' => '/admin',
+	'middleware' => ['auth'],
 ], function () {
-    //LinksController
-    //UsersController
+	//LinksController
+	//UsersController
 });
 
 /**
  * User Dashboard
  */
 Route::group([
-    'prefix'     => '/dashboard',
-    'middleware' => ['auth']
+	'prefix' => '/dashboard',
+	'middleware' => ['auth'],
 ], function () {
-    Route::resource('links', 'UserDashboardController');
+	Route::resource('links', 'UserDashboardController');
 });
-
 
 /**
  * Setup auth routes
  */
 Auth::routes();
-
 
 Route::get('create', 'SystemController@create')->name('url_create');
 Route::post('create', 'SystemController@store')->name('url_store');
