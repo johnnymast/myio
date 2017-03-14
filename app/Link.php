@@ -19,6 +19,8 @@ class Link extends Model
 
 
     /**
+     * Generate a link with a unique hash.
+     *
      * @see generateUniqueHash
      *
      * @param string $url
@@ -29,7 +31,6 @@ class Link extends Model
     {
 
         $hash = self::generateUniqueHash();
-
         $link = Link::create([
             'url'  => $url,
             'hash' => $hash,
@@ -40,7 +41,7 @@ class Link extends Model
 
 
     /**
-     * Create a unique_id for a new account to use.
+     * Create a hash for this link to use.
      *
      * @return int
      */
@@ -55,12 +56,25 @@ class Link extends Model
         return $number;
     }
 
-    public function user() {
-        $this->hasOne('App\User');
+
+    /**
+     * Return the user for this link.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
-    public function hits() {
-        $this->hasMany('App\Hit');
-    }
 
+    /**
+     * Return the hits for this link.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hits()
+    {
+        return $this->hasMany('App\Hit');
+    }
 }
