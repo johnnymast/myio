@@ -14,9 +14,7 @@ ini_set('display_errors', true);
 */
 
 
-Route::get('/', function () {
-    return redirect()->route('url_create');
-});
+Route::get('/', ['as' => 'homepage', 'uses' => 'HomeController@index']);
 
 Route::get('/home', function () {
     return redirect()->route('url_create');
