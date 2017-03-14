@@ -22,6 +22,6 @@ class Hit extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function link() {
-        return $this->hasOne('App\Link');
+        return $this->hasOne(Link::class);
     }
 }

@@ -14,11 +14,11 @@ ini_set('display_errors', true);
 */
 
 Route::get('/', function () {
-    return \Redirect::route('url_create');
+    return redirect()->route('url_create');
 });
 
 Route::get('/home', function () {
-    return \Redirect::route('url_create');
+    return redirect()->route('url_create');
 })->middleware('auth')->name('home');
 
 /**

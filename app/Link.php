@@ -65,7 +65,7 @@ class Link extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 
@@ -76,6 +76,6 @@ class Link extends Model
      */
     public function hits()
     {
-        return $this->hasMany('App\Hit');
+        return $this->hasMany(Hit::class);
     }
 }
