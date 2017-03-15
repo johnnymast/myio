@@ -4,7 +4,8 @@
 
 ## About MyIO
 
-TODO
+This project started as a project to practice for working on a project in a group. In fact whats more easy then a url shorting service on laravel right? After some time and more and more members joined the project became a bigger thing it even has an own logo for crying out loud lol.
+
 
 # Step 1: install composer
 
