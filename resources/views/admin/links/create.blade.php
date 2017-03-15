@@ -20,7 +20,7 @@
 
             <div class="control is-grouped">
                 <p class="control">
-                    {!! Form::submit('Submit', ['class'=>'button is-primary']) !!}
+                    {!! Form::submit('Create Short URL!', ['class'=>'button is-primary']) !!}
                 </p>
             </div>
         {{ Form::close() }}
