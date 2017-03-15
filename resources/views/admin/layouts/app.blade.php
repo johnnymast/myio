@@ -27,7 +27,7 @@
                 <nav class="nav">
                     <div class="nav-left">
                         <a href="{{ url('/') }}" class="nav-item hero-brand">
-                            {{ config('app.name', 'Laravel') }}
+                            {{ config('app.name', 'MyIO') }}
                         </a>
                     </div>
                     <div class="nav-right is-flex">
