@@ -10,13 +10,13 @@
 </head>
 <body>
 <div class="site-content">
-    @include('layouts.partials._nav')
+    @include('frontend.layouts.partials._nav')
 
     @yield('content')
 
 </div>
 
-@include('layouts.partials._footer')
+@include('frontend.layouts.partials._footer')
 
 <script src="/js/app.js"></script>
 
