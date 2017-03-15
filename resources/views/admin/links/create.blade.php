@@ -13,7 +13,7 @@
 
             <h3 class="title is-3">Create Short URL</h3>
 
-            {!! Form::label('url', 'Url', ['for' => 'url','class' => 'label']) !!}
+            {!! Form::label('url', 'URL', ['for' => 'url','class' => 'label']) !!}
             <p class="control">
                 {!! Form::text('url', null, ['required' => 'required', 'id' => 'url', 'class'=>'input', 'placeholder'=> 'Your URL']) !!}
             </p>
