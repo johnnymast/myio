@@ -1,4 +1,4 @@
-<nav class="nav background-black-transparent fixed-nav">
+<nav class="nav fixed-nav">
       <div id="nav-menu" class="nav-right nav-menu">
         <a class="nav-item" href="https://github.com/johnnymast/myio">
           Home
