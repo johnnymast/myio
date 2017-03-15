@@ -48,7 +48,7 @@
                         <p class="has-text-centered">
                             <a href="register.html">Register an Account</a>
                             |
-                            <a href="#">Forgot password</a>
+                            <a href="{{ route('password.request') }}">Forgot password? </a>
                             |
                             <a href="#">Need help?</a>
                         </p>
