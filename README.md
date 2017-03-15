@@ -12,10 +12,44 @@ First thing you is installing composer on to your system. You can get composer [
 
 # Step 2: Installing using composer
 
-TODO 
+Bla bla bla placeholder text here .. 
+ 
 ```bash
-$ composer require xxx/xxx
+$ composer create-project xxx/xxx
 ```
+
+# Step 3: Create your .env file
+
+Create a new .env file and add your database credentials to it.
+
+```bash
+-bash-4.2$ cat > .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+-bash-4.2$
+
+```
+
+# Step 4: Run your migrations
+
+Use artisan to run your migrations. This will create your database for the website.
+
+
+```bash
+-bash-4.2$ php artisan migrate
+Migration table created successfully.
+Migrated: 2014_10_12_000000_create_users_table
+Migrated: 2014_10_12_100000_create_password_resets_table
+Migrated: 2017_03_14_172117_create_links_table
+Migrated: 2017_03_14_184704_create_hits_table
+-bash-4.2$
+
+```
+
 
 ## Requirements
 
