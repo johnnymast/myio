@@ -23,19 +23,36 @@ class Link extends Model
      * Generate a link with a unique hash.
      *
      * @see generateUniqueHash
+     *
      * @param string $url
      * @param int    $user_id
+     *
      * @return mixed
      */
     public static function generate($url = '', $user_id = 0)
     {
 
         $hash = self::generateUniqueHash();
-        $link = Link::create([
-            'url'     => $url,
-            'hash'    => $hash,
-            'user_id' => $user_id,
-        ]);
+        $data = [
+            'url'  => $url,
+            'hash' => $hash,
+        ];
+
+        /**
+         * If the user_id has been offered
+         * add the user_id so we can build
+         * a relationship between link and
+         * user.
+         */
+        if ($user_id > 0) {
+            $data['user_id'] = $user_id;
+        }
+
+        /**
+         * Finally insert the link into
+         * the database.
+         */
+        $link = Link::create($data);
 
         return $link;
     }
