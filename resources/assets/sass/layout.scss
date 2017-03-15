@@ -25,5 +25,14 @@
 }
 
 .nav-item a, a.nav-item {
-    color: #fff;
+    color: #000;
 }
+
+label {
+  span {
+    &.remember {
+      color: #000;
+    }
+  }
+}
+
