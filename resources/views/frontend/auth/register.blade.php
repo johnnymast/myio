@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('frontend.layouts.master')
 
 @section('content')
     <section class="hero is-fullheight is-bold hero-background">
