@@ -22,33 +22,13 @@
 </head>
 <body>
     <div id="app">
-        <section>
-            <div class="container">
-                <nav class="nav">
-                    <div class="nav-left">
-                        <a href="{{ url('/') }}" class="nav-item hero-brand">
-                            {{ config('app.name', 'MyIO') }}
-                        </a>
-                    </div>
-                    <div class="nav-right is-flex">
-                        <span class="nav-item">Welcome, {{ \Auth::user()->name }}!</span>
-                        <span class="nav-item">
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="button is-primary">
-                                <span>Logout</span>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </span>
-                    </div>
-                </nav>
-            </div>
-        </section>
+        
+        @include('admin.layouts.partials._header')
 
         <section class="hero is-bold is-primary">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">title-here</h1>
+                    <h1 class="title">{{ isset($title) ? $title : 'MyIO' }}</h1>
                 </div>
             </div>
         </section>
@@ -57,16 +37,7 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-3">
-                        <aside class="menu box">
-                            <p class="menu-label">
-                                Navigation
-                            </p>
-                            <ul class="menu-list">
-                                <li>
-                                    <a href="{{ route('url_create') }}" class="is-active">Create</a>
-                                </li>
-                            </ul>
-                        </aside>
+                        @include('admin.layouts.partials._nav')
                     </div>
 
                     <div class="column is-9">
@@ -76,6 +47,7 @@
             </div>
         </section>
 
+        @include('admin.layouts.partials._footer')
     </div>
 
     <!-- Scripts -->
