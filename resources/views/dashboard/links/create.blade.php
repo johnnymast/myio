@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'Create Short URL'])
+@extends('dashboard.layouts.app', ['title' => 'Create Short URL'])
 
 @section('content')
     <div class="box">

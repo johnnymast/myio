@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         
-        @include('admin.layouts.partials._header')
+        @include('dashboard.layouts.partials._header')
 
         <section class="hero is-bold is-primary">
             <div class="hero-body">
@@ -37,7 +37,7 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-3">
-                        @include('admin.layouts.partials._nav')
+                        @include('dashboard.layouts.partials._nav')
                     </div>
 
                     <div class="column is-9">
@@ -47,7 +47,7 @@
             </div>
         </section>
 
-        @include('admin.layouts.partials._footer')
+        @include('dashboard.layouts.partials._footer')
     </div>
 
     <!-- Scripts -->

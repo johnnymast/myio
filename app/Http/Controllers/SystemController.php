@@ -32,7 +32,7 @@ class SystemController extends Controller
      */
     public function create()
     {
-        return view('admin.links.create');
+        return view('dashboard.links.create');
     }
 
     /**
