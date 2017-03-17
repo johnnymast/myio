@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('frontend.layouts.master')
 
 @section('content')
     <section class="hero is-fullheight is-bold hero-background">
@@ -46,7 +46,7 @@
                                 </p>
                         </div>
                         <p class="has-text-centered">
-                            <a href="register.html">Register an Account</a>
+                            <a href="{{ route('register') }}">Register an Account</a>
                             |
                             <a href="{{ route('password.request') }}">Forgot password? </a>
                             |

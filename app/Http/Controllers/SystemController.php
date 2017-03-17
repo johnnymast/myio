@@ -18,13 +18,12 @@ class SystemController extends Controller
     public function show(Link $link)
     {
         $link->hits()->create([
-            'ip'         => request()->ip(),
+            'ip' => request()->ip(),
             'user_agent' => request()->server('HTTP_USER_AGENT'),
         ]);
 
         return redirect($link->url);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -33,9 +32,8 @@ class SystemController extends Controller
      */
     public function create()
     {
-        return view('links.create');
+        return view('dashboard.links.create');
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -50,8 +48,8 @@ class SystemController extends Controller
 
         $link = $link->generate($request->url, auth()->user());
 
-        $html_link = '<a href="/'.$link->hash.'">Try it now</a>';
+        $html_link = '<a href="/' . $link->hash . '">Try it now</a>';
 
-        return redirect()->route('url_create')->with('message', 'Url added created! '.$html_link);
+        return redirect()->route('url_create')->with('message', 'Url added created! ' . $html_link);
     }
 }

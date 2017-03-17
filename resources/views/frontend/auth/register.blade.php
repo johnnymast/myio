@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('frontend.layouts.master')
 
 @section('content')
     <section class="hero is-fullheight is-bold hero-background">
@@ -7,7 +7,7 @@
         <div class="container">
             <div class="columns is-vcentered">
                 <div class="column is-4 is-offset-4">
-                    <h1 class="title color-is-white">
+                    <h1 class="title color-is-white has-text-centered">
                         Join MyIO
                     </h1>
                     <div class="box">
@@ -47,7 +47,7 @@
 
                             <label class="label">Confirm Password</label>
                             <p class="control">
-                                <input class="input" id="password_confim" type="password" class="form-control" name="password_confim" required>
+                                <input class="input" id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
                             </p>
 
                             <hr>
