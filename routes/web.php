@@ -17,28 +17,28 @@ Route::get('/', ['as' => 'homepage', 'uses' => 'HomeController@index']);
 Route::get('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@logout']);
 
 Route::get('/home', function () {
-	return redirect()->route('url_create');
+    return redirect()->route('url_create');
 })->middleware('auth')->name('home');
 
 /**
  * Admin routes
  */
 Route::group([
-	'prefix' => '/admin',
-	'middleware' => ['auth'],
+    'prefix' => '/admin',
+    'middleware' => ['auth'],
 ], function () {
-	//LinksController
-	//UsersController
+    //LinksController
+    //UsersController
 });
 
 /**
  * User Dashboard
  */
 Route::group([
-	'prefix' => '/dashboard',
-	'middleware' => ['auth'],
+    'prefix' => '/dashboard',
+    'middleware' => ['auth'],
 ], function () {
-	Route::resource('links', 'UserDashboardController');
+    Route::resource('links', 'UserDashboardController');
 });
 
 /**
