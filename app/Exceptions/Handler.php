@@ -20,7 +20,7 @@ class Handler extends ExceptionHandler {
 		\Illuminate\Database\Eloquent\ModelNotFoundException::class,
 		\Illuminate\Session\TokenMismatchException::class,
 		\Illuminate\Validation\ValidationException::class,
-		//\Illuminate\Database\Eloquent\ModelNotFoundException::class,
+		\Illuminate\Database\Eloquent\ModelNotFoundException::class,
 	];
 
 	/**
