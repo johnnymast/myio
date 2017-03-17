@@ -11,8 +11,7 @@ ini_set('display_errors', true);
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+ */
 
 Route::get('/', ['as' => 'homepage', 'uses' => 'HomeController@index']);
 Route::get('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@logout']);
@@ -53,4 +52,4 @@ Route::post('create', 'SystemController@store')->name('url_store');
 /**
  * Note. This should be the last url ever in this routes file.
  */
-Route::get('link/{link_hash}', 'SystemController@show');
+Route::get('/{linkHash}', 'SystemController@show');
