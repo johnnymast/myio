@@ -29,14 +29,14 @@ class LinksTest extends TestCase
 
         /**
          * Test that status code 204 is given if
-         * there are no items found.
+         * there is no content found.
          */
         $this->get('api/links', $header)->assertStatus(204);
 
         $testLinks = factory(Link::class, 2)
             ->create(['user_id' => $user->id]);
 
-        dd(Link::all()->toArray());
+        print_r(Link::all()->toArray());
 
         /**
          * Assert that we see a status of 200 and the
@@ -59,14 +59,6 @@ class LinksTest extends TestCase
          * Todo: Potential fail if we are going to implement pagination.
          */
         $this->get('/api/links', $header)->assertExactJson(Link::whereUserId($user['id'])->get()->toArray());
-
-        /**
-         * Cleanup, we don't want these test links to
-         * show up in any other functions.
-         */
-        $testLinks->each(function ($link) {
-            $link->delete();
-        });
     }
 
 
