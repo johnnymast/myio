@@ -80,10 +80,10 @@ class Links extends Controller
      */
     public function show($id = 0)
     {
-        $item = Auth()->user->link->find($id);
+        $item = collect(Auth()->user->link->find($id));
 
         if ($item->isEmpty()) {
-            return $this->response->errorNotFound();
+            $this->response->errorNotFound();
         }
 
         return $this->response->item($item, new LinkTransformer());

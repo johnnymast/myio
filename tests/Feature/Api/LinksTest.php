@@ -11,7 +11,7 @@ use Tests\TestCase;
 class LinksTest extends TestCase
 {
 
-    use DatabaseTransactions;
+//    use DatabaseTransactions;
     use DatabaseMigrations;
 
     protected $authType = 'basic';
@@ -31,19 +31,19 @@ class LinksTest extends TestCase
          * Test that status code 204 is given if
          * there is no content found.
          */
-        $this->get('api/links', $header)->assertStatus(204);
+        $this->get('api/links', $header)
+            ->assertStatus(204);
 
         $testLinks = factory(Link::class, 2)
             ->create(['user_id' => $user->id]);
 
-        print_r(Link::all()->toArray());
-
-
         /**
          * Assert that we see a status of 200 and the
-         * seeds created by ApiLinksTableSeeder.
+         * seeds created by the Link factory.
          */
-        $this->get('api/links', $header)->dump()->assertStatus(200)->assertJsonStructure([
+        $this->get('api/links', $header)
+            ->assertStatus(200)
+            ->assertJsonStructure([
                 '*' => [
                     'user_id',
                     'url',
@@ -59,7 +59,7 @@ class LinksTest extends TestCase
          *
          * Todo: Potential fail if we are going to implement pagination.
          */
-        $this->get('/api/links', $header)->assertExactJson(Link::whereUserId($user['id'])->get()->toArray());
+        $this->get('/api/links', $header)->assertExactJson($testLinks);
     }
 
 
@@ -81,7 +81,7 @@ class LinksTest extends TestCase
      */
     public function testLinksShow()
     {
-        dd(\App\Link::all()->toArray());
+     //   dd(\App\Link::all()->toArray());
     }
 
 
