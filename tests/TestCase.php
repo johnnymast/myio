@@ -9,7 +9,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected function makeBasicAuthHeader(User $user) {
+    protected function withBasicAuthHeader(User $user) {
         return [
             'Authorization' => 'Basic '.base64_encode($user->email.':'.$user->api_token)
         ];
