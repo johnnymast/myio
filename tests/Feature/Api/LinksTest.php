@@ -42,7 +42,7 @@ class LinksTest extends TestCase
          * seeds created by the Link factory.
          */
         $this->get('api/links', $header)
-            ->assertStatus(200)
+            ->assertStatus(200)->dump()
             ->assertJsonStructure([
                 '*' => [
                     'user_id',

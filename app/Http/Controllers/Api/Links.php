@@ -26,10 +26,14 @@ class Links extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $links = collect(Auth()->user()->links);
-
+        $links = Auth()->user()->links();
+        $id = Auth()->user()->id;
+        $user = \App\User::find( $id);
+        $links = $user->links;
+        print_r($links->toArray());
+      //  print_r(Link::all()->toArray()); echo "--@@--\n";
         if ($links->isEmpty()) {
             return $this->response->noContent();
         }
