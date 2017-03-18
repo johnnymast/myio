@@ -47,7 +47,8 @@ class LinksTest extends TestCase
          * Test to see if the output of api/links returns the
          * seeded links.
          */
-        $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200);//->assertJson(Link::all()->toArray());
+        $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)
+            ->assertJson(Link::all()->toArray());
 
     }
 
