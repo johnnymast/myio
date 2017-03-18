@@ -4,9 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "0a47a291ab9d6117bc81c7a5a250be39",
+    "content-hash": "8e74b72a72bcbe5f813c9150d534c051",
     "packages": [
+        {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "v2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "24e4f0261e352d3fd86d0447791b56ae49398674"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/24e4f0261e352d3fd86d0447791b56ae49398674",
+                "reference": "24e4f0261e352d3fd86d0447791b56ae49398674",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*",
+                "maximebf/debugbar": "~1.13.0",
+                "php": ">=5.5.9",
+                "symfony/finder": "~2.7|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "time": "2017-01-19T08:19:49+00:00"
+        },
         {
             "name": "dingo/api",
             "version": "dev-master",
@@ -47,47 +100,16 @@
             "suggest": {
                 "lucadegasperi/oauth2-server-laravel": "Protect your API with OAuth 2.0.",
                 "tymon/jwt-auth": "Protect your API with JSON Web Tokens."
-=======
-    "content-hash": "8ecbbf755f70c0421849f380bccbdacf",
-    "packages": [
-        {
-            "name": "barryvdh/laravel-debugbar",
-            "version": "v2.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "24e4f0261e352d3fd86d0447791b56ae49398674"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/24e4f0261e352d3fd86d0447791b56ae49398674",
-                "reference": "24e4f0261e352d3fd86d0447791b56ae49398674",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*",
-                "maximebf/debugbar": "~1.13.0",
-                "php": ">=5.5.9",
-                "symfony/finder": "~2.7|~3.0"
->>>>>>> master
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
                     "dev-master": "1.0-dev"
-=======
-                    "dev-master": "2.3-dev"
->>>>>>> master
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
                     "Dingo\\Api\\": "src/"
-=======
-                    "Barryvdh\\Debugbar\\": "src/"
->>>>>>> master
                 },
                 "files": [
                     "src/helpers.php"
@@ -95,7 +117,6 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-<<<<<<< HEAD
                 "BSD-3-Clause"
             ],
             "authors": [
@@ -111,7 +132,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2017-02-10 00:56:04"
+            "time": "2017-02-10T00:56:04+00:00"
         },
         {
             "name": "dingo/blueprint",
@@ -168,25 +189,6 @@
                 "laravel"
             ],
             "time": "2017-02-11T17:28:57+00:00"
-=======
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "PHP Debugbar integration for Laravel",
-            "keywords": [
-                "debug",
-                "debugbar",
-                "laravel",
-                "profiler",
-                "webprofiler"
-            ],
-            "time": "2017-01-19T08:19:49+00:00"
->>>>>>> master
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -968,7 +970,6 @@
             "time": "2017-02-09T11:33:58+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "league/fractal",
             "version": "0.15.0",
             "source": {
@@ -997,7 +998,41 @@
                 "illuminate/pagination": "The Illuminate Pagination component.",
                 "pagerfanta/pagerfanta": "Pagerfanta Paginator",
                 "zendframework/zend-paginator": "Zend Framework Paginator"
-=======
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Fractal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Sturgeon",
+                    "email": "me@philsturgeon.uk",
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle the output of complex data structures ready for API output.",
+            "homepage": "http://fractal.thephpleague.com/",
+            "keywords": [
+                "api",
+                "json",
+                "league",
+                "rest"
+            ],
+            "time": "2016-12-28T01:30:30+00:00"
+        },
+        {
             "name": "maximebf/debugbar",
             "version": "1.13.1",
             "source": {
@@ -1023,25 +1058,16 @@
                 "kriswallsmith/assetic": "The best way to manage assets",
                 "monolog/monolog": "Log using Monolog",
                 "predis/predis": "Redis storage"
->>>>>>> master
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "0.13-dev"
-=======
                     "dev-master": "1.13-dev"
->>>>>>> master
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "League\\Fractal\\": "src"
-=======
                     "DebugBar\\": "src/DebugBar/"
->>>>>>> master
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1050,23 +1076,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Phil Sturgeon",
-                    "email": "me@philsturgeon.uk",
-                    "homepage": "http://philsturgeon.uk/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Handle the output of complex data structures ready for API output.",
-            "homepage": "http://fractal.thephpleague.com/",
-            "keywords": [
-                "api",
-                "json",
-                "league",
-                "rest"
-            ],
-            "time": "2016-12-28T01:30:30+00:00"
-=======
                     "name": "Maxime Bouroumeau-Fuseau",
                     "email": "maxime.bouroumeau@gmail.com",
                     "homepage": "http://maximebf.com"
@@ -1083,7 +1092,6 @@
                 "debugbar"
             ],
             "time": "2017-01-05T08:46:19+00:00"
->>>>>>> master
         },
         {
             "name": "monolog/monolog",
