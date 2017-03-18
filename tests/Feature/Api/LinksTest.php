@@ -11,8 +11,8 @@ use Tests\TestCase;
 class LinksTest extends TestCase
 {
 
-    use DatabaseMigrations;
     use DatabaseTransactions;
+    use DatabaseMigrations;
 
     protected $authType = 'basic';
 
@@ -37,6 +37,7 @@ class LinksTest extends TestCase
             ->create(['user_id' => $user->id]);
 
         print_r(Link::all()->toArray());
+
 
         /**
          * Assert that we see a status of 200 and the

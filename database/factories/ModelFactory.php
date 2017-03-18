@@ -33,6 +33,6 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
 $factory->define(App\Link::class, function (Faker\Generator $faker) {
     return [
         'url' => $faker->url,
-        'hash' => $faker->unique()->name(),
+        'hash' => $faker->unique()->name,
     ];
 });
