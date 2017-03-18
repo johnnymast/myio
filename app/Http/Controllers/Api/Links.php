@@ -8,6 +8,7 @@ use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Transformers\LinkTransformer;
 
 class Links extends Controller
 {
@@ -19,11 +20,21 @@ class Links extends Controller
      * Return all links created by the
      * authenticated user.
      *
+     * Status codes:
+     *  200 - OK
+     *  204 - No Content
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Auth()->user()->links->toArray();
+        $links = collect(Auth()->user()->links);
+
+        if ($links->isEmpty()) {
+            return $this->response->noContent();
+        }
+
+        return $this->response->collection($links, new LinkTransformer());
     }
 
 
@@ -67,9 +78,17 @@ class Links extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = 0)
     {
-        return response()->json(Auth()->user()->links->where('id', $id)->first());
+        $item = Auth()->user->link->find($id);
+
+        if ($item->isEmpty()) {
+            return $this->response->errorNotFound();
+        }
+
+        return $this->response->item($item, new LinkTransformer());
+        //
+//        return response()->json(Auth()->user()->links->where('id', $id)->first());
     }
 
 

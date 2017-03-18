@@ -29,3 +29,10 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
         'name' => 'Administrator',
     ];
 });
+
+$factory->define(App\Link::class, function (Faker\Generator $faker) {
+    return [
+        'url' => $faker->url,
+        'hash' => $faker->unique()->name(),
+    ];
+});

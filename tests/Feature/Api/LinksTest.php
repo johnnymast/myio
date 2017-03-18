@@ -3,65 +3,92 @@
 namespace Tests\Feature\Api;
 
 use App\Link;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class LinksTest extends TestCase
 {
 
     use DatabaseMigrations;
+    use DatabaseTransactions;
+
+    protected $authType = 'basic';
 
     /**
      * @test
-     * @dataProvider
      *
      * Test: GET /api/links.
      */
     public function testLinksIndex()
     {
 
-        $this->seed('ApiUsersTableSeeder');
+        $user = factory(User::class)->create();
+        $header = $this->authHeader($user);
 
-        $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)->assertJson([]);
+        /**
+         * Test that status code 204 is given if
+         * there are no items found.
+         */
+        $this->get('api/links', $header)->assertStatus(204);
 
-        $this->seed('ApiLinksTableSeeder');
+        $testLinks = factory(Link::class, 2)
+            ->create(['user_id' => $user->id]);
+
+        dd(Link::all()->toArray());
 
         /**
          * Assert that we see a status of 200 and the
          * seeds created by ApiLinksTableSeeder.
          */
-        $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)->assertJsonStructure([
-            '*' => [
-                'user_id',
-                'url',
-                'hash',
-                'created_at',
-                'updated_at'
-            ]
-        ]);
-
-        $x = $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)->assertJson([
-           ]);
+        $this->get('api/links', $header)->dump()->assertStatus(200)->assertJsonStructure([
+                '*' => [
+                    'user_id',
+                    'url',
+                    'hash',
+                    'created_at',
+                    'updated_at'
+                ]
+            ]);
 
         /**
          * Test to see if the output of api/links returns the
          * seeded links.
+         *
+         * Todo: Potential fail if we are going to implement pagination.
          */
-        $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)
-            ->assertJson(Link::all()->toArray());
+        $this->get('/api/links', $header)->assertExactJson(Link::whereUserId($user['id'])->get()->toArray());
 
+        /**
+         * Cleanup, we don't want these test links to
+         * show up in any other functions.
+         */
+        $testLinks->each(function ($link) {
+            $link->delete();
+        });
     }
 
 
+    /**
+     * @test
+     *
+     * Test: POST /api/links.
+     */
     public function testLinksStore()
     {
-
+        // 201 for created
     }
 
 
+    /**
+     * @test
+     *
+     * Test: POST /api/links.
+     */
     public function testLinksShow()
     {
-
+        dd(\App\Link::all()->toArray());
     }
 
 

@@ -2,20 +2,29 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\User;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+
     use CreatesApplication;
 
-    protected function withBasicAuthHeader($user = null) {
-        if (! $user) {
+    protected $authType = 'basic';
+
+
+    protected function authHeader($user = null)
+    {
+        if ( ! $user) {
             $user = User::first();
         }
 
-        return [
-            'Authorization' => 'Basic '.base64_encode($user->email.':'.$user->api_token)
-        ];
+        if ($this->authType == 'basic') {
+            return [
+                'Authorization' => 'Basic '.base64_encode($user->email.':'.$user->api_token)
+            ];
+        }
+
+        return [];
     }
 }
