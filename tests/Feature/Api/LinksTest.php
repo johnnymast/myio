@@ -22,6 +22,8 @@ class LinksTest extends TestCase
 
         $this->seed('ApiUsersTableSeeder');
 
+        echo $this->get('api/links', $this->withBasicAuthHeader())->dump();
+
         $this->get('api/links', $this->withBasicAuthHeader())->assertStatus(200)->assertJson([]);
 
         $this->seed('ApiLinksTableSeeder');
