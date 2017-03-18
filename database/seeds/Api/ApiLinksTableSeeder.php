@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use App\Link;
 
 class ApiLinksTableSeeder extends Seeder
 {
@@ -22,8 +21,8 @@ class ApiLinksTableSeeder extends Seeder
             ['url' => 'https://www.yahoo.com', 'hash' => '32212322', 'user_id' => 1]
         ]);
 
-        $links->each(function ($link) use ($user) {
-            App(Link::class)->create($link);
+        $links->each(function ($link)  {
+            App(App\Link::class)->create($link);
         });
 
         Model::reguard();

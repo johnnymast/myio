@@ -13,8 +13,7 @@ abstract class TestCase extends BaseTestCase
         if (! $user) {
             $user = User::first();
         }
-        print_r($user::all()->toArray());
-        echo '^^';
+
         return [
             'Authorization' => 'Basic '.base64_encode($user->email.':'.$user->api_token)
         ];
