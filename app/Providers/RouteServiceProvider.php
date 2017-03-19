@@ -26,12 +26,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
         Route::bind('linkHash', function ($hash) {
-            $result = Link::where('hash', $hash)->first();
 
-            if (! $result)
-                abort(404);
-
-            return $result;
+            return Link::where('hash', $hash)->firstOrFail();
         });
 
         parent::boot();
