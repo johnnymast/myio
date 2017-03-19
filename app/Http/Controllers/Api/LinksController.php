@@ -55,23 +55,26 @@ class LinksController extends Controller
 
         /** @var \Illuminate\Validation\Factory $validator */
         $validator = Validator::make(request()->all(), [
-            'url'  => 'required_without_all:urls,array',
-            'urls' => 'required_without_all:url'
+            'url'  => 'required_without_all:urls',
+            'urls' => 'array|required_without_all:url'
         ]);
 
         if ($validator->fails()) {
             $this->response->errorBadRequest('Missing required parameters url or urls');
         };
-
+// urls geen array
         if (request()->has('url')) {
             $item = $link->generate(request()->url, $user);
             return $this->response->item($item, new LinkTransformer())
                 ->setStatusCode(201);
         } else {
             if (request()->has('urls')) {
-                $collection = collect(request()->urls)->each(function ($url) use ($link, $user) {
-                    return $link->generate($url, $user);
-                });
+
+                $collection = collect();
+                foreach(request()->get('urls') as $url) {
+                    $collection[] = $link->generate($url, $user);
+                }
+
                 return $this->response->collection($collection, new LinkTransformer)
                     ->setStatusCode(201);
             }

@@ -84,8 +84,6 @@ class LinksTest extends TestCase
         $this->post('api/links/', ['wrong' => 'parameter'], $header)
             ->assertStatus(400);
 
-        // Failing parameters
-
         /**
          * Assert that we see a status of 201 and the
          * if we create one link using the required
@@ -104,8 +102,40 @@ class LinksTest extends TestCase
                 ]
             ]);
 
+        $this->assertDatabaseHas('links', [
+            'url' => $links[0],
+        ]);
 
-        // 201 for created
+        /**
+         * Delete the test links so we can
+         * continue with the next test.
+         */
+        Link::all()->each(function($link) {
+            $link->delete();
+        });
+
+        /**
+         * Assert that we see a status of 201 and the
+         * if we create multiple links using the required
+         * url parameter.
+         */
+        $this->post('api/links/', ['urls' => $links], $header)
+            ->assertStatus(201)
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'id',
+                        'user_id',
+                        'url',
+                        'hash',
+                        'created_at',
+                        'updated_at'
+                    ],
+                ]
+            ]);
+
+        $this->assertDatabaseHas('links', ['url' => $links[0]]);
+        $this->assertDatabaseHas('links', ['url' => $links[1]]);
     }
 
 
