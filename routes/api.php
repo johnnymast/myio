@@ -23,4 +23,6 @@ $api->version('v1', ['middleware' => 'auth:api'],  function ($api) {
     $api->resource('links', 'App\Http\Controllers\Api\LinksController', [
         'except' => ['update'],
     ]);
+
+    $api->get('statistics/link/{id}', 'App\Http\Controllers\Api\StatisticsController@show');
 });

@@ -9,7 +9,8 @@ use Dingo\Api\Routing\Helpers;
 use App\Link;
 
 /**
- * @Resource("Users")
+ *
+ * @Resource("Links")
  */
 class LinksController extends Controller
 {
@@ -108,6 +109,12 @@ class LinksController extends Controller
      * @Parameters({
      *      @Parameter("id", type="integer", required=true, description="The id of the url to retrieve", default=1)
      * })
+     * @Transaction({
+     *      @Request({"id": "10"}),
+     *      @Response(201, body={"id": 10, "url": "https://www.google.com", "hash":"8928129"}),
+     *      @Response(404, body={"error": "Not found"})
+     * })
+     *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -125,12 +132,19 @@ class LinksController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * Status codes:
      *  200 - OK
      *  204 - No Content
      *
-     * @param  int $id
+     * @Delete("/")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("id", type="integer", required=true, description="The id of the url to delete", default=1)
+     * })
+     * @Response(200, body={"message": "OK"})
      *
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
