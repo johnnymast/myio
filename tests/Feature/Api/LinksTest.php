@@ -5,13 +5,10 @@ namespace Tests\Feature\Api;
 use App\Link;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class LinksTest extends TestCase
 {
-
-//    use DatabaseTransactions;
     use DatabaseMigrations;
 
     protected $authType = 'basic';
@@ -85,6 +82,22 @@ class LinksTest extends TestCase
      */
     public function testLinksShow()
     {
+        $user = factory(User::class)->create();
+        $header = $this->authHeader($user);
+
+        $link = factory(Link::class)
+            ->create(['user_id' => $user->id]);
+
+        /**
+         * Test that status code 200 is given if
+         * the link has been found.
+         */
+        $this->get('api/links/'.$link->id, $header)->dump()
+            ->assertStatus(200)
+            ->assertJson($link->toArray());
+
+
+
      //   dd(\App\Link::all()->toArray());
     }
 

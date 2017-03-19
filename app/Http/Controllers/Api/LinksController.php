@@ -10,7 +10,7 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class Links extends Controller
+class LinksController extends Controller
 {
 
     use Helpers;
@@ -26,15 +26,18 @@ class Links extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         /** @var \Illuminate\Support\Collection $links */
-        $links = Auth()->user()->links()->get();
+        $links = auth()->user()->links()->get();
 
         if ($links->isEmpty()) {
             return $this->response->noContent();
         }
+
+        // FIXME
         return $links->toArray();
+
         return $this->response->collection($links, new LinkTransformer);
     }
 
@@ -48,25 +51,26 @@ class Links extends Controller
      */
     public function store(Request $request, Link $link)
     {
-        $validator = Validator::make($request->all(),
-            ['url' => 'required_without_all:urls', 'urls' => 'required_without_all:url']);
+        /** @var \Illuminate\Validation\Factory $validator */
+        $validator = Validator::make($request->all(), [
+                'url'  => 'required_without_all:urls',
+                'urls' => 'required_without_all:url'
+            ]);
+
         if ($validator->fails()) {
             throw new StoreResourceFailedException ($validator->message());
         };
 
-        $user = $request->user();
-
         if ($request->has('url')) {
-            $item = $link->generate($request->url, $user);
+            $item = $link->generate($request->url, $request->user);
 
             return $item;
         } else {
             if ($request->has('urls')) {
-                $items = collect($request->urls)->each(function ($url) use ($user, $link) {
-                    return $link->generate($url, $user);
-                });
 
-                return $items;
+                //return collect($request->urls)->each(function ($url) use ($request->user, $link) {
+                //    return $link->generate($url, $request->user);
+                //});
             }
         }
     }
@@ -75,21 +79,24 @@ class Links extends Controller
     /**
      * Return one single link
      *
-     * @param int $id
+     * Status codes:
+     *  200 - OK
+     *  204 - No Content
      *
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id = 0)
     {
-        $item = collect(Auth()->user->link->find($id));
-
-        if ($item->isEmpty()) {
+        $user = Auth()->user();
+        if ( ! $user->link) {
             $this->response->errorNotFound();
         }
 
+        /** @var \App\Link $item */
+        $item = Auth()->user()->link->get()->find($id);
+
         return $this->response->item($item, new LinkTransformer());
-        //
-//        return response()->json(Auth()->user()->links->where('id', $id)->first());
     }
 
 
@@ -102,6 +109,7 @@ class Links extends Controller
      */
     public function destroy($id)
     {
+        /** @var \App\Link $link */
         $link = Link::find($id);
 
         if ($link) {
@@ -110,6 +118,6 @@ class Links extends Controller
             return $this->response->accepted();
         }
 
-        return $this->response->errorNotFound('Link not found');
+        $this->response->errorNotFound('Link not found');
     }
 }
