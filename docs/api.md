@@ -3,7 +3,6 @@ FORMAT: 1A
 # My IO API
 
 # Links
-ABC
 
 ## Return all links created by the
 authenticated user. [GET /]
@@ -104,4 +103,41 @@ Status codes:
 
             {
                 "message": "OK"
+            }
+
+# Statistics
+Return requested Link statistics.
+
+## Return all hits for a given link. [GET /]
+Status codes:
+200 - OK
+204 - No Content
+
++ Parameters
+    + id: (integer, required) - The id of the link to retrieve statistics for
+        + Default: 1
+
++ Request (application/json)
+    + Body
+
+            {
+                "id": "10"
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "hits": {
+                    "id": 10,
+                    "ip": "12.0.0.1",
+                    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+                }
+            }
+
++ Response 204 (application/json)
+    + Body
+
+            {
+                "message": "No content"
             }
