@@ -17,7 +17,6 @@ class StatisticsController extends Controller
 
     use Helpers;
 
-
     /**
      * Return all hits for a given link.
      *
