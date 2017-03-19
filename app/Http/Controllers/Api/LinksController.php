@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Link;
-use App\Transformers\LinkTransformer;
-use Dingo\Api\Routing\Helpers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Transformers\LinkTransformer;
+use App\Http\Controllers\Controller;
+use Dingo\Api\Routing\Helpers;
+use App\Link;
 
+/**
+ * @Resource("Users")
+ */
 class LinksController extends Controller
 {
 
@@ -23,6 +25,9 @@ class LinksController extends Controller
      *  200 - OK
      *  204 - No Content
      *
+     * @Get("/")
+     * @Versions({"v1"})
+     * @Response(200, body={"data": {"id": 10, "username": "foo"}})
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -46,6 +51,16 @@ class LinksController extends Controller
      *  204 - No Content
      *  400 - Bad Request
      *
+     * @Post("/")
+     * @Versions({"v1"})
+     * @Request({"url": "https://www.google.com", "urls[]": "https://www.google.com", "urls[]": "https://yahoo.com"})
+     * @Transaction({
+     *      @Request({"url": "https://www.google.com"}),
+     *      @Response(201, body={"id": 10, "url": "https://www.google.com", "hash":"8928129"}),
+     *      @Response(400, body={"error": "Missing required parameters url or urls"})
+     * })
+     *
+     * @param Link $link
      * @return \Illuminate\Http\Response
      */
     public function store(Link $link)
@@ -62,21 +77,20 @@ class LinksController extends Controller
         if ($validator->fails()) {
             $this->response->errorBadRequest('Missing required parameters url or urls');
         };
-// urls geen array
+
         if (request()->has('url')) {
             $item = $link->generate(request()->url, $user);
-            return $this->response->item($item, new LinkTransformer())
-                ->setStatusCode(201);
+
+            return $this->response->item($item, new LinkTransformer())->setStatusCode(201);
         } else {
             if (request()->has('urls')) {
 
                 $collection = collect();
-                foreach(request()->get('urls') as $url) {
+                foreach (request()->get('urls') as $url) {
                     $collection[] = $link->generate($url, $user);
                 }
 
-                return $this->response->collection($collection, new LinkTransformer)
-                    ->setStatusCode(201);
+                return $this->response->collection($collection, new LinkTransformer)->setStatusCode(201);
             }
         }
     }
@@ -89,8 +103,12 @@ class LinksController extends Controller
      *  200 - OK
      *  404 - Not found
      *
+     * @Get("/")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("id", type="integer", required=true, description="The id of the url to retrieve", default=1)
+     * })
      * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function show($id = 0)
@@ -107,12 +125,12 @@ class LinksController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      * Status codes:
      *  200 - OK
      *  204 - No Content
      *
      * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
