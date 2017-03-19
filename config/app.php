@@ -177,6 +177,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
+        /* Dingo A RESTful API package for the Laravel and Lumen frameworks. */
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+
+        /* ApiServiceProvider */
+        App\Providers\ApiServiceProvider::class,
+
     ],
 
     /*
