@@ -20,26 +20,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-        'api_token' => str_random(10),
     ];
 });
 
 $factory->define(App\Role::class, function (Faker\Generator $faker) {
     return [
         'name' => 'Administrator',
-    ];
-});
-
-$factory->define(App\Link::class, function (Faker\Generator $faker) {
-    return [
-        'url' => $faker->url,
-        'hash' => $faker->unique()->name,
-    ];
-});
-
-$factory->define(App\Hit::class, function (Faker\Generator $faker) {
-    return [
-        'ip' => $faker->ipv4,
-        'user_agent' => $faker->userAgent,
     ];
 });
