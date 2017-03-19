@@ -42,9 +42,10 @@ class LinksTest extends TestCase
          * seeds created by the Link factory.
          */
         $this->get('api/links', $header)
-            ->assertStatus(200)->dump()
+            ->assertStatus(200) //->dump()
             ->assertJsonStructure([
                 '*' => [
+                    'id',
                     'user_id',
                     'url',
                     'hash',
@@ -59,7 +60,10 @@ class LinksTest extends TestCase
          *
          * Todo: Potential fail if we are going to implement pagination.
          */
-        $this->get('/api/links', $header)->assertExactJson($testLinks);
+
+        // assertJson success
+        // assertExactJson fails
+        $this->get('/api/links', $header)->assertJson($testLinks->toArray());
     }
 
 

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Link;
+use App\Transformers\LinkTransformer;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Transformers\LinkTransformer;
 
 class Links extends Controller
 {
@@ -28,17 +28,14 @@ class Links extends Controller
      */
     public function index(Request $request)
     {
-        $links = Auth()->user()->links();
-        $id = Auth()->user()->id;
-        $user = \App\User::find( $id);
-        $links = $user->links;
-        print_r($links->toArray());
-      //  print_r(Link::all()->toArray()); echo "--@@--\n";
+        /** @var \Illuminate\Support\Collection $links */
+        $links = Auth()->user()->links()->get();
+
         if ($links->isEmpty()) {
             return $this->response->noContent();
         }
-
-        return $this->response->collection($links, new LinkTransformer());
+        return $links->toArray();
+        return $this->response->collection($links, new LinkTransformer);
     }
 
 

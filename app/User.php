@@ -32,7 +32,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-
     /**
      * Return the links for this user.
      *

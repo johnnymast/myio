@@ -17,13 +17,14 @@ class LinkTransformer extends TransformerAbstract
      */
     public function transform(Link $link)
     {
+        return $link->toArray();
         return [
             'id'         => $link->id,
-            'user_id'    => $user->user_id,
-            'url'        => $user->url,
-            'hash'       => $user->hash,
-            'created_at' => $user->created_at,
-            'updated_at' => $user->updated_at,
+            'user_id'    => (int)$link->user_id,
+            'url'        => $link->url,
+            'hash'       => $link->hash,
+            'created_at' => $link->created_at,
+            'updated_at' => $link->updated_at,
         ];
     }
 }
