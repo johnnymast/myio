@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Link;
 use App\Transformers\LinkTransformer;
-use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,9 +34,6 @@ class LinksController extends Controller
             return $this->response->noContent();
         }
 
-        // FIXME
-        return $links->toArray();
-
         return $this->response->collection($links, new LinkTransformer);
     }
 
@@ -45,32 +41,39 @@ class LinksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * Status codes:
+     *  200 - OK
+     *  204 - No Content
+     *  400 - Bad Request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Link $link)
+    public function store(Link $link)
     {
+        $user = resolve('ApiUser');
+        $link = resolve('App\Link');
+
         /** @var \Illuminate\Validation\Factory $validator */
-        $validator = Validator::make($request->all(), [
-                'url'  => 'required_without_all:urls',
-                'urls' => 'required_without_all:url'
-            ]);
+        $validator = Validator::make(request()->all(), [
+            'url'  => 'required_without_all:urls,array',
+            'urls' => 'required_without_all:url'
+        ]);
 
         if ($validator->fails()) {
-            throw new StoreResourceFailedException ($validator->message());
+            $this->response->errorBadRequest('Missing required parameters url or urls');
         };
 
-        if ($request->has('url')) {
-            $item = $link->generate($request->url, $request->user);
-
-            return $item;
+        if (request()->has('url')) {
+            $item = $link->generate(request()->url, $user);
+            return $this->response->item($item, new LinkTransformer())
+                ->setStatusCode(201);
         } else {
-            if ($request->has('urls')) {
-
-                //return collect($request->urls)->each(function ($url) use ($request->user, $link) {
-                //    return $link->generate($url, $request->user);
-                //});
+            if (request()->has('urls')) {
+                $collection = collect(request()->urls)->each(function ($url) use ($link, $user) {
+                    return $link->generate($url, $user);
+                });
+                return $this->response->collection($collection, new LinkTransformer)
+                    ->setStatusCode(201);
             }
         }
     }
@@ -81,43 +84,49 @@ class LinksController extends Controller
      *
      * Status codes:
      *  200 - OK
-     *  204 - No Content
+     *  404 - Not found
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id = 0)
     {
-        $user = Auth()->user();
-        if ( ! $user->link) {
+        $user = resolve('ApiUser');
+
+        if ( ! $user->hasLink($id)) {
             $this->response->errorNotFound();
         }
 
-        /** @var \App\Link $item */
-        $item = Auth()->user()->link->get()->find($id);
-
-        return $this->response->item($item, new LinkTransformer());
+        return $this->response->item($user->getLink($id), new LinkTransformer());
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * Status codes:
+     *  200 - OK
+     *  204 - No Content
      *
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        /** @var \App\Link $link */
-        $link = Link::find($id);
+        /** @var \App\User $user */
+        $user = resolve('ApiUser');
 
-        if ($link) {
-            $link->delete();
-
-            return $this->response->accepted();
+        if ( ! $user->hasLink($id)) {
+            $this->response->errorNotFound();
         }
 
-        $this->response->errorNotFound('Link not found');
+        $result = $user->getLink($id)->delete();
+
+        if ($result) {
+            return \Response::make('OK', 200);
+        } else {
+            $this->response->errorInternal('Could not delete link');
+        }
     }
 }

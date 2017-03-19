@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\ApiUser;
 use App\Http\Controllers\Api\LinksController;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,14 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        App()->bind('ApiUser', function() {
+           $user = auth()->user();
+           if (! $user) {
+               return null;
+           }
 
+           return User::find($user->id);
+        });
     }
 
 

@@ -19,12 +19,14 @@ abstract class TestCase extends BaseTestCase
             $user = User::first();
         }
 
+        $header = [
+            '_token' => csrf_token()
+        ];
+
         if ($this->authType == 'basic') {
-            return [
-                'Authorization' => 'Basic '.base64_encode($user->email.':'.$user->api_token)
-            ];
+            $header['Authorization'] = 'Basic '.base64_encode($user->email.':'.$user->api_token);
         }
 
-        return [];
+        return $header;
     }
 }

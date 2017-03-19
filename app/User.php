@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Contracts\ApiUser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ApiUser
 {
 
     use Notifiable;
@@ -50,6 +51,30 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(\App\Role::class)->withTimestamps();
     }
+
+
+    /**
+     * @param int $id
+     *
+     * @return null
+     */
+    public function hasLink($id = 0) {
+        return ($this->getLink($id) != null);
+    }
+
+
+    /**
+     * @param int $id
+     *
+     * @return null
+     */
+    public function getLink($id = 0) {
+        if ($this->links) {
+            return $this->links->find($id);
+        }
+        return null;
+    }
+
 
     /**
      * Check User role
