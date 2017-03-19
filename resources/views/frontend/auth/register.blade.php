@@ -52,7 +52,7 @@
 
                             <hr>
                     <p class="has-text-centered">
-                        <button class="button is-primary" type="submit">Register</button>
+                        <button class="button is-info" type="submit">Register</button>
                     </p>
                     </form>
 

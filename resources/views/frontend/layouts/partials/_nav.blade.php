@@ -15,6 +15,8 @@
 
         @if (Auth::check())
             <a class="nav-item" href="{{ route('user.logout') }}">Logout</a>
+        @else
+              <a class="nav-item" href="{{ route('register') }}">Signup</a>
         @endif
 
   </div>
