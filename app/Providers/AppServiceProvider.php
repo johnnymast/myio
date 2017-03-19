@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Route::bind('link_hash', function ($hash = '') {
+
+            return Link::where('hash', $hash)->first();
+        });
     }
 
     /**
