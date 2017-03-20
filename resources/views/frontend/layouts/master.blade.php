@@ -6,24 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta id="token" content="{{ csrf_token() }}" name="token">
   <title>Myio Link Shortener</title>
-  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
 </head>
 <body>
-<div class="site-content">
-    @include('frontend.layouts.partials._nav')
+  <div id="app">
+    <div class="site-content">
+      @include('frontend.layouts.partials._nav')
 
-    @if (Session::get('flash_notification.message'))
-      @include('frontend.layouts.partials._flash')
-    @endif
+      @if (Session::get('flash_notification.message'))
+        @include('frontend.layouts.partials._flash')
+      @endif
 
-    @yield('content')
+      @yield('content')
 
-</div>
+    </div>
+  </div>
 
-@include('frontend.layouts.partials._footer')
+  @include('frontend.layouts.partials._footer')
 
-<script src="/js/app.js"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 
 </body>
 </html>
