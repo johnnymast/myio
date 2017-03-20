@@ -22,16 +22,22 @@ class CreateDev extends Command
 
     /**
      * The console command description.
+     *
      * @var string
      */
     protected $description = 'Setup the testing environment';
 
     /**
+     * This testing environment file to write.
+     *
      * @var string
      */
     protected $envFile = '.env.testing';
 
     /**
+     * We will write our tests into this
+     * database file.
+     *
      * @var string
      */
     protected $dbFile = './database/database.sqlite';
