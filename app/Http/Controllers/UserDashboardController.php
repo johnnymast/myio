@@ -11,7 +11,7 @@ class UserDashboardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//
+		return view('dashboard.layouts.master');
 	}
 
 	/**
