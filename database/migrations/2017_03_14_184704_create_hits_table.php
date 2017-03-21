@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateHitsTable extends Migration
 {
@@ -23,7 +23,6 @@ class CreateHitsTable extends Migration
             $table->foreign('link_id')
                 ->references('id')->on('links')
                 ->onDelete('cascade');
-
         });
     }
 
