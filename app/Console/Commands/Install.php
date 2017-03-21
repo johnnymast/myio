@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 
 class Install extends Command
 {
-
     /**
      * The name and signature of the console command.
      * @var string
@@ -46,7 +45,6 @@ class Install extends Command
      */
     protected $env = [];
 
-
     /**
      * Create a new command instance.
      */
@@ -57,7 +55,7 @@ class Install extends Command
         $this->env[] = [
             'type'  => 'value',
             'key'   => 'APP_KEY',
-            'value' => $this->createAppKey()
+            'value' => $this->createAppKey(),
         ];
 
         $this->steps = [
@@ -71,13 +69,13 @@ class Install extends Command
                 'question' => 'Enable debugging? ',
                 'default'  => 'true',
                 'key'      => 'APP_DEBUG',
-                'answers'  => ['true', 'false']
+                'answers'  => ['true', 'false'],
             ],
             [
                 'question' => 'Logging level',
                 'default'  => config('app.log_level'),
                 'key'      => 'APP_LOG_LEVEL',
-                'answers'  => ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency']
+                'answers'  => ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'],
             ],
             [
                 'question' => 'Application url',
@@ -125,7 +123,6 @@ class Install extends Command
         ];
     }
 
-
     /**
      * Generate a unique APP key, This is
      * code i stole and modified from the
@@ -137,24 +134,23 @@ class Install extends Command
         return 'base64:'.base64_encode(random_bytes(config('app.cipher') == 'AES-128-CBC' ? 16 : 32));
     }
 
-
     /**
      * Execute the console command.
      * @return mixed
      */
     public function handle()
     {
-        $this->info("Welcome to ".config('app.name').". We will quickly get you started by asking you a few questions.");
+        $this->info('Welcome to '.config('app.name').'. We will quickly get you started by asking you a few questions.');
 
         if (file_exists($this->envFile) == true) {
-            if (($answer = $this->anticipate($this->envFile.' already exists, do you wish to continue?' , ['yes', 'no'], 'no'))) {
+            if (($answer = $this->anticipate($this->envFile.' already exists, do you wish to continue?', ['yes', 'no'], 'no'))) {
                 if ($answer == 'no') {
                     $this->info("\r\nBye bye ... ");
+
                     return;
                 }
             }
         }
-
 
         foreach ($this->steps as $step) {
             $repeat = true;
@@ -169,7 +165,7 @@ class Install extends Command
                     $this->env[] = [
                         'type'  => 'value',
                         'key'   => $step['key'],
-                        'value' => $answer
+                        'value' => $answer,
                     ];
                 }
             }
@@ -193,7 +189,7 @@ class Install extends Command
                     $this->env[] = [
                         'type'  => 'value',
                         'key'   => $line[0],
-                        'value' => $line[1]
+                        'value' => $line[1],
                     ];
                 }
             }
@@ -204,7 +200,6 @@ class Install extends Command
         if (count($this->env) > 1) {
             $fp = fopen($this->envFile, 'w+');
             foreach ($this->env as $item) {
-
                 if ($item['type'] == 'value') {
                     if (isset($written[$item['key']])) {
                         continue;

@@ -76,9 +76,9 @@ class LoginController extends Controller
         // User is verified, authentication can continue
         if ($this->attemptLogin($request)) {
             Flash::success('Logged in successfully');
+
             return $this->sendLoginResponse($request);
         }
-
 
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
@@ -89,7 +89,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Check if User email is verified
+     * Check if User email is verified.
      *
      * @param $email
      * @return string
@@ -101,8 +101,6 @@ class LoginController extends Controller
         if ($user and $user->activated == 0) {
             return 'unverified';
         }
-
-        return null;
     }
 
     /**

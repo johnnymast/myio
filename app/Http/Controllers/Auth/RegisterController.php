@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
-use DB;
 use App\Role;
 use App\Session\Flash;
 use App\User;
-use App\Http\Controllers\Controller;
+use DB;
 use Exception;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -109,11 +109,13 @@ class RegisterController extends Controller
 
             Flash::success('Signup successful. Please check your email for activation instructions');
             DB::commit();
+
             return redirect()->to('/');
         } catch (Exception $e) {
             dd($e->getMessage());
 
             DB::rollback();
+
             return back();
         }
     }
