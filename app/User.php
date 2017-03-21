@@ -19,6 +19,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_token',
     ];
 
     /**
@@ -87,5 +88,15 @@ class User extends Authenticatable
     public function removeRole($role)
     {
         return $this->roles()->detach($role);
+    }
+
+    /**
+     * Verify a user
+     */
+    public function verified()
+    {
+        $this->activated = 1;
+        $this->email_token = null;
+        $this->save();
     }
 }
