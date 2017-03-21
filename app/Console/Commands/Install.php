@@ -140,7 +140,7 @@ class Install extends Command
      */
     public function handle()
     {
-        $this->info('Welcome to '.config('app.name').'. We will quickly get you started by asking you a few questions.');
+        $this->info('Welcome to '.config('app.name').'. We will get you started quickly by asking you a few questions.');
 
         if (file_exists($this->envFile) == true) {
             if (($answer = $this->anticipate($this->envFile.' already exists, do you wish to continue?', ['yes', 'no'], 'no'))) {
