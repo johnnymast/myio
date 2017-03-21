@@ -24,7 +24,7 @@ class Install extends Command
      * file.
      * @var string
      */
-    protected $envFile = '.env.debug';
+    protected $envFile = '.env';
 
     /**
      * Same environment file.
