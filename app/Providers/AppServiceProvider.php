@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Link;
-use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Route::bind('link_hash', function ($hash = '') {
+
             return Link::where('hash', $hash)->first();
         });
     }

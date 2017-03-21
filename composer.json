@@ -1,7 +1,7 @@
 {
-    "name": "johnnymast/myio",
-    "description": "Making your url's shorter one at a time",
-    "keywords": ["laravel", "shorturl", "shorten-urls"],
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -11,8 +11,7 @@
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.4",
-        "oohology/dotenvwriter": "^1.2"
+        "laravelcollective/html": "^5.4"
     },
     "require-dev": {
         "filp/whoops": "^2.1",

@@ -9,8 +9,7 @@ use Dingo\Api\Routing\Helpers;
 use App\Link;
 
 /**
- *
- * @Resource("Links")
+ * @Resource("Users")
  */
 class LinksController extends Controller
 {

@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Contracts\ApiUser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ApiUser
 {
+
     use Notifiable;
 
     /**
@@ -18,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'email_token',
+        'api_token'
     ];
 
     /**
@@ -42,8 +44,7 @@ class User extends Authenticatable
     }
 
     /**
-     * User is linked to a role.
-     *
+     * User is linked to a role
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
@@ -51,11 +52,34 @@ class User extends Authenticatable
         return $this->belongsToMany(\App\Role::class)->withTimestamps();
     }
 
+
     /**
-     * Check User role.
+     * @param int $id
+     *
+     * @return null
+     */
+    public function hasLink($id = 0) {
+        return ($this->getLink($id) != null);
+    }
+
+
+    /**
+     * @param int $id
+     *
+     * @return null
+     */
+    public function getLink($id = 0) {
+        if ($this->links) {
+            return $this->links->find($id);
+        }
+        return null;
+    }
+
+
+    /**
+     * Check User role
      *
      * @param string $name
-     *
      * @return bool
      */
     public function hasRole($name)
@@ -70,7 +94,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Assign user to role.
+     * Assign user to role
      *
      * @param $role
      */
@@ -80,24 +104,13 @@ class User extends Authenticatable
     }
 
     /**
-     * Remove user role.
+     * Remove user role
      *
      * @param $role
-     *
      * @return int
      */
     public function removeRole($role)
     {
         return $this->roles()->detach($role);
-    }
-
-    /**
-     * Verify a user.
-     */
-    public function verified()
-    {
-        $this->activated = 1;
-        $this->email_token = null;
-        $this->save();
     }
 }

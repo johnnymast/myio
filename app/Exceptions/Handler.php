@@ -32,28 +32,27 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param \Exception $exception
-     *
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
     {
+
         parent::report($exception);
     }
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
-     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
         // the below code is for Whoops support. Since Whoops can open some security holes we want to only have it
         // enabled in the debug environment. We also don't want Whoops to handle 404 and Validation related exceptions.
-        if (config('app.debug') && ! ($e instanceof ValidationException) && ! ($e instanceof HttpResponseException)) {
+        if (config('app.debug') && !($e instanceof ValidationException) && !($e instanceof HttpResponseException)) {
             return $this->renderExceptionWithWhoops($e);
         }
 
@@ -71,7 +70,7 @@ class Handler extends ExceptionHandler
 
         // Let's return a default error page instead of the ugly Laravel error page when we have fatal exceptions
         if ($e instanceof \Symfony\Component\Debug\Exception\FatalErrorException) {
-            return response()->view('errors.500', [], 500);
+            return response()->view('errors.500', array(), 500);
         }
 
         // finally we are back to the original default error handling provided by Laravel
@@ -79,11 +78,11 @@ class Handler extends ExceptionHandler
             switch ($e->getStatusCode()) {
                 // not found
                 case 404:
-                    return response()->view('errors.404', [], 404);
+                    return response()->view('errors.404', array(), 404);
                     break;
                 // internal error
                 case 500:
-                    return response()->view('errors.500', [], 500);
+                    return response()->view('errors.500', array(), 500);
                     break;
 
                 default:
@@ -96,16 +95,15 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception using Whoops.
-     *
-     * @param \Exception $e
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Render an exception using Whoops.
+    *
+    * @param  \Exception $e
+    * @return \Illuminate\Http\Response
+    */
     protected function renderExceptionWithWhoops(Exception $e)
     {
         if (config('app.debug')) {
-            $whoops = new \Whoops\Run();
+            $whoops = new \Whoops\Run;
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
 
             return new \Illuminate\Http\Response(
@@ -119,9 +117,8 @@ class Handler extends ExceptionHandler
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param \Illuminate\Http\Request                 $request
-     * @param \Illuminate\Auth\AuthenticationException $exception
-     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
