@@ -9,11 +9,9 @@ use Mockery\Exception;
 /**
  * Setup the development environment for MyIO. The command
  * will auto generate the .env.testing file for you.
- * @package App\Console\Commands
  */
 class CreateDev extends Command
 {
-
     /**
      * The name and signature of the console command.
      * @var string
@@ -91,7 +89,6 @@ class CreateDev extends Command
         return touch($this->dbFile);
     }
 
-
     /**
      * Fil in the fields so we can write them
      * to the .env.testing file.
@@ -99,7 +96,6 @@ class CreateDev extends Command
     private function createEnvironment()
     {
         try {
-
             $writer = new DotEnvWriter($this->envFile);
             foreach ($this->defaults as $key => $val) {
                 $writer->set($key, $val);
@@ -109,9 +105,9 @@ class CreateDev extends Command
         } catch (Exception $e) {
             $status = false;
         }
+
         return $status;
     }
-
 
     /**
      * Handle the execution of the console
@@ -127,18 +123,18 @@ class CreateDev extends Command
                 'messages' => [
                     'success' => 'Created '.$this->dbFile,
                     'error'   => 'Failed to create '.$this->dbFile,
-                ]
+                ],
             ],
             'environment' => [
                 'callback' => [$this, 'createEnvironment'],
                 'messages' => [
                     'success' => 'Created '.$this->envFile,
                     'error'   => 'Failed to create '.$this->envFile,
-                ]
-            ]
+                ],
+            ],
         ];
 
-        $this->info("Welcome to the ".config('app.name')." testing environment. \r\n");
+        $this->info('Welcome to the '.config('app.name')." testing environment. \r\n");
 
         foreach ($steps as $step) {
             $result = call_user_func($step['callback']);
