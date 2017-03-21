@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
     {
         // the below code is for Whoops support. Since Whoops can open some security holes we want to only have it
         // enabled in the debug environment. We also don't want Whoops to handle 404 and Validation related exceptions.
-        if (config('app.debug') && !($e instanceof ValidationException) && !($e instanceof HttpResponseException)) {
+        if (config('app.debug') && ! ($e instanceof ValidationException) && ! ($e instanceof HttpResponseException)) {
             return $this->renderExceptionWithWhoops($e);
         }
 
