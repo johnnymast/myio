@@ -2,7 +2,6 @@
 
 namespace App\Session;
 
-
 use Illuminate\Session\Store;
 
 class FlashMessage

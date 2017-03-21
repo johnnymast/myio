@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ecbbf755f70c0421849f380bccbdacf",
+    "content-hash": "3a0a211fd5fec78b5dc598ce23518ade",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1003,6 +1003,56 @@
                 "php"
             ],
             "time": "2017-03-05T18:23:57+00:00"
+        },
+        {
+            "name": "oohology/dotenvwriter",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oohology/dotenvwriter.git",
+                "reference": "f47baa653aca77cd512474a5d62d3cefec2c6f3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oohology/dotenvwriter/zipball/f47baa653aca77cd512474a5d62d3cefec2c6f3a",
+                "reference": "f47baa653aca77cd512474a5d62d3cefec2c6f3a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DotEnvWriter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Woodmansee",
+                    "email": "woody@oohology.com",
+                    "homepage": "https://www.oohology.com"
+                }
+            ],
+            "description": "Interface for editing .env files in PHP.",
+            "keywords": [
+                "dotenv",
+                "php",
+                "writer"
+            ],
+            "time": "2017-03-21T19:03:15+00:00"
         },
         {
             "name": "paragonie/random_compat",

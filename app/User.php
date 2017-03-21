@@ -92,7 +92,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Verify a user
+     * Verify a user.
      */
     public function verified()
     {
