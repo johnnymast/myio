@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e84085e34e6714a18089b2f563a8bfcc",
+    "content-hash": "3a0a211fd5fec78b5dc598ce23518ade",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1006,16 +1006,16 @@
         },
         {
             "name": "oohology/dotenvwriter",
-            "version": "v1.1.6",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oohology/dotenvwriter.git",
-                "reference": "4e5d115d4756780032e4dca70b3d3c1c949c172e"
+                "reference": "f47baa653aca77cd512474a5d62d3cefec2c6f3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oohology/dotenvwriter/zipball/4e5d115d4756780032e4dca70b3d3c1c949c172e",
-                "reference": "4e5d115d4756780032e4dca70b3d3c1c949c172e",
+                "url": "https://api.github.com/repos/oohology/dotenvwriter/zipball/f47baa653aca77cd512474a5d62d3cefec2c6f3a",
+                "reference": "f47baa653aca77cd512474a5d62d3cefec2c6f3a",
                 "shasum": ""
             },
             "require": {
@@ -1052,7 +1052,7 @@
                 "php",
                 "writer"
             ],
-            "time": "2016-10-27T21:24:26+00:00"
+            "time": "2017-03-21T19:03:15+00:00"
         },
         {
             "name": "paragonie/random_compat",
