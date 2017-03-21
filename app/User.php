@@ -7,7 +7,6 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-
     use Notifiable;
 
     /**
@@ -32,7 +31,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-
     /**
      * Return the links for this user.
      *
@@ -44,7 +42,8 @@ class User extends Authenticatable
     }
 
     /**
-     * User is linked to a role
+     * User is linked to a role.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
@@ -53,9 +52,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Check User role
+     * Check User role.
      *
      * @param string $name
+     *
      * @return bool
      */
     public function hasRole($name)
@@ -70,7 +70,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Assign user to role
+     * Assign user to role.
      *
      * @param $role
      */
@@ -80,9 +80,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Remove user role
+     * Remove user role.
      *
      * @param $role
+     *
      * @return int
      */
     public function removeRole($role)
