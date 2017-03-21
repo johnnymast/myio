@@ -7,7 +7,6 @@ use App\Link;
 
 class SystemController extends Controller
 {
-
     /**
      * Log the hit and redirect to the url.
      *
@@ -18,7 +17,7 @@ class SystemController extends Controller
     public function show(Link $link)
     {
         $link->hits()->create([
-            'ip' => request()->ip(),
+            'ip'         => request()->ip(),
             'user_agent' => request()->server('HTTP_USER_AGENT'),
         ]);
 
@@ -38,7 +37,7 @@ class SystemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\SubmitUrlRequest $request
+     * @param \App\Http\Requests\SubmitUrlRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,8 +47,8 @@ class SystemController extends Controller
 
         $link = $link->generate($request->url, auth()->user());
 
-        $html_link = '<a href="/' . $link->hash . '">Try it now</a>';
+        $html_link = '<a href="/'.$link->hash.'">Try it now</a>';
 
-        return redirect()->route('url_create')->with('message', 'Url added created! ' . $html_link);
+        return redirect()->route('url_create')->with('message', 'Url added created! '.$html_link);
     }
 }

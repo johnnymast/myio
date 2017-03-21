@@ -19,12 +19,12 @@ class SecureAdmin
         $this->auth = $auth;
     }
 
-
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -35,8 +35,9 @@ class SecureAdmin
         }
 
         // Allow access only to administrators
-        if (! $this->auth->user()->hasRole('Administrator')) {
-            abort(404, "You are not authorized to view requested resource.");
+        if (!$this->auth->user()->hasRole('Administrator')) {
+            abort(404, 'You are not authorized to view requested resource.');
+
             return redirect()->route('homepage');
         }
 
