@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hit extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -15,9 +14,8 @@ class Hit extends Model
     protected $fillable = [
         'ip',
         'user_agent',
-        'link_id'
+        'link_id',
     ];
-
 
     /**
      * Return the link for this hit.
