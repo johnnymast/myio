@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmitUrlRequest;
-use Illuminate\Http\Request;
 use App\Link;
 
 class SystemController extends Controller
 {
-
     /**
      * Log the hit and redirect to the url.
-     * @param Link    $link
+     *
+     * @param Link $link
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function show(Link $link)
     {
         $link->hits()->create([
-            'ip' => request()->ip(),
+            'ip'         => request()->ip(),
             'user_agent' => request()->server('HTTP_USER_AGENT'),
         ]);
 
@@ -32,24 +31,24 @@ class SystemController extends Controller
      */
     public function create()
     {
-        return view('links.create');
+        return view('dashboard.links.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\SubmitUrlRequest  $request
+     * @param \App\Http\Requests\SubmitUrlRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(SubmitUrlRequest $request)
+    public function store(SubmitUrlRequest $request, Link $link)
     {
-        $user_id = auth()->check() ? auth()->user()->id : 0;
-        $link = Link::generate($request->url, $user_id);
+        // Todo checking for failure here.
+
+        $link = $link->generate($request->url, auth()->user());
 
         $html_link = '<a href="/'.$link->hash.'">Try it now</a>';
 
-        return redirect()
-                ->route('url_create')
-                ->with('message', 'Url added created! '.$html_link);
+        return redirect()->route('url_create')->with('message', 'Url added created! '.$html_link);
     }
 }

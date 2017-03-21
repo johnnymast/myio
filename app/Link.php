@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -15,48 +14,63 @@ class Link extends Model
     protected $fillable = [
         'url',
         'hash',
-        'user_id'
+        'user_id',
     ];
-
 
     /**
      * Generate a link with a unique hash.
      *
-     * @see generateUniqueHash
-     * @param string $url
-     * @param int    $user_id
+     * @see      generateUniqueHash
+     *
+     * @param string    $url
+     * @param User|null $user
+     *
      * @return mixed
+     *
+     * @internal param int $user_id
      */
-    public static function generate($url = '', $user_id = 0)
+    public function generate($url = '', User $user = null)
     {
+        $hash = $this->generateUniqueHash();
+        $data = [
+            'url'  => $url,
+            'hash' => $hash,
+        ];
 
-        $hash = self::generateUniqueHash();
-        $link = Link::create([
-            'url'     => $url,
-            'hash'    => $hash,
-            'user_id' => $user_id,
-        ]);
+        /*
+         * If the user_id has been offered
+         * add the user_id so we can build
+         * a relationship between link and
+         * user.
+         */
+        if ($user) {
+            $data['user_id'] = $user->id;
+        }
+
+        /**
+         * Finally insert the link into
+         * the database.
+         */
+        $link = self::create($data);
 
         return $link;
     }
-
 
     /**
      * Create a hash for this link to use.
      *
      * @return int
      */
-    public static function generateUniqueHash()
+    private function generateUniqueHash()
     {
         $number = mt_rand(1000, 999999); // better than rand()
 
         if (self::whereHash($number)->exists()) {
-            return self::generateUniqueHash();
+            return $this->generateUniqueHash();
         }
 
         return $number;
     }
-
 
     /**
      * Return the user for this link.
@@ -67,7 +81,6 @@ class Link extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 
     /**
      * Return the hits for this link.

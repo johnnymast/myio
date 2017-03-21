@@ -12,16 +12,18 @@ class Hit extends Model
      * @var array
      */
     protected $fillable = [
-        'ip', 'user_agent', 'link_id'
+        'ip',
+        'user_agent',
+        'link_id',
     ];
-
 
     /**
      * Return the link for this hit.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function link() {
+    public function link()
+    {
         return $this->hasOne(Link::class);
     }
 }
