@@ -15,6 +15,8 @@ ini_set('display_errors', true);
  */
 
 Route::get('/', ['as' => 'homepage', 'uses' => 'HomeController@index']);
+Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
+
 Route::get('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@logout']);
 
 Route::get('/home', function () {
