@@ -59,7 +59,7 @@
 
                                 <hr>
                                 <p class="control">
-                                    <button class="button is-primary">Reset Password</button>
+                                    <button class="button is-info">Reset Password</button>
                                 </p>
                             </form>
                         </div>

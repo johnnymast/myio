@@ -12,7 +12,7 @@
                         </h1>
                         <div class="box">
                             @if (session('status'))
-                                <div class="alert alert-success">
+                                <div class="help-custom is-success">
                                     {{ session('status') }}
                                 </div>
                             @endif
@@ -32,7 +32,7 @@
 
                                 <hr>
                                 <p class="control">
-                                    <button class="button is-primary">Send Password Reset Link</button>
+                                    <button class="button is-info">Send Password Reset Link</button>
                                 </p>
                         </form>
                     </div>
