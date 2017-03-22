@@ -1,4 +1,5 @@
 <p align="center">
+[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)
 </p>
 
 ## About MyIO
@@ -12,25 +13,55 @@ First thing you is installing composer on to your system. You can get composer [
 
 # Step 2: Installing using composer
 
-Bla bla bla placeholder text here .. 
+As i am writing this document you can tryout the development version of MyIO by creating a project with MyIO.
  
 ```bash
-$ composer create-project xxx/xxx
+$ composer create-project johnnymast/myio dev-master
 ```
 
-# Step 3: Create your .env file
+# Step 3: Stetting up the environment
 
-Create a new .env file and add your database credentials to it.
+MyIO gives you the option to copying the .env.example into .env and configure your project that way. You could alternatively use the MyIO installer.
+ 
 
 ```bash
--bash-4.2$ cat > .env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
--bash-4.2$
+$ php artisan myio:install
+Welcome to MyIO. We will get you started quickly by asking you a few questions.
+
+ What environment will you run MyIO in [local]:
+ >
+
+ Enable debugging?  [true]:
+ >
+
+ Logging level [debug]:
+ >
+
+ Application url [http://localhost]:
+ >
+
+ Database connection [mysql]:
+ > mysql
+
+ Database host [127.0.0.1]:
+ >
+ 
+ Database port [3306]:
+ >
+
+ Database name [myio]:
+ > myio
+
+ Database user [root]:
+ > root
+ 
+ Database password [root]:
+ > root
+ 
+Have fun ...
+
+$
+
 
 ```
 
