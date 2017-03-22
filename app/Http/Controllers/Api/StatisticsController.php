@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 class StatisticsController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
@@ -17,11 +16,10 @@ class StatisticsController extends Controller
     {
         $user = resolve('ApiUser');
 
-        if ( ! $user->hasLink($id)) {
+        if (! $user->hasLink($id)) {
             $this->response->errorNotFound();
         }
 
         return $this->response->item($user->getLink($id)->hits, new LinkTransformer());
     }
-
 }

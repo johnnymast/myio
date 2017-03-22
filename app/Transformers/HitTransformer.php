@@ -7,9 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 class HitTransformer extends TransformerAbstract
 {
-
     /**
-     * Turn this item object into a generic array
+     * Turn this item object into a generic array.
      *
      * @param Hit $hit
      *
@@ -17,10 +16,9 @@ class HitTransformer extends TransformerAbstract
      */
     public function transform(Hit $hit)
     {
-
         return [
-            'id'         => (int)$hit->id,
-            'link_id'    => (int)$hit->user_id,
+            'id'         => (int) $hit->id,
+            'link_id'    => (int) $hit->user_id,
             'user_agent'        => $link->user_agent,
             'created_at'       => $link->hash,
             'created_at' => ($link->created_at) ? $link->created_at->toDateTimeString() : '',
