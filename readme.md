@@ -1,5 +1,6 @@
 <p align="center">
-[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)
+[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)]
+
 </p>
 
 ## About MyIO
