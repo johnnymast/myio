@@ -1,5 +1,10 @@
 <p align="center">
-[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)]
+[![Build Status](https://travis-ci.org/johnnymast/myio.svg?branch=master)](https://travis-ci.org/johnnymast/myio)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/myio/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/myio/?branch=master)
+[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)
+
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Contact%20Laravel UK)](https://twitter.com/intent/tweet?text=@uklaravel)
+
 
 </p>
 
