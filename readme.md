@@ -84,6 +84,16 @@ Migrated: 2017_03_14_184704_create_hits_table
 
 ```
 
+```bash
+$ php artisan myio:testenv
+Welcome to the MyIO testing environment.
+
+Created ./database/database.sqlite
+Created .env.testing
+
+Happy testing ...
+$
+```
 
 ## Requirements
 
