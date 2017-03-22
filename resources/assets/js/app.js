@@ -15,13 +15,8 @@ require('jquery');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Notification from './bulma/Notification';
+Vue.component('notification', require('./components/Notification.vue'))
 
 const app = new Vue({
     el: '#app',
-
-    mounted() {
-        const notification = new Notification;
-        notification.close();
-    }
 });
