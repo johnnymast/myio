@@ -15,6 +15,9 @@ class AddActivationFlagToUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('activated')->default(0);
+        });
+
+        Schema::table('users', function (Blueprint $table) {
             $table->string('email_token')->nullable();
         });
     }
@@ -28,6 +31,9 @@ class AddActivationFlagToUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('activated');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('email_token');
         });
     }
