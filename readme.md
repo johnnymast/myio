@@ -1,40 +1,145 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+[![Build Status](https://travis-ci.org/johnnymast/myio.svg?branch=master)](https://travis-ci.org/johnnymast/myio)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/myio/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/myio/?branch=master)
+[![StyleCI](https://styleci.io/repos/84979323/shield?branch=master)](https://styleci.io/repos/84979323)
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Contact)](https://twitter.com/intent/tweet?text=@uklaravel)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## About MyIO
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project started as a project to practice for working on a project in a group. In fact whats more easy then a url shorting service on laravel right? After some time and more and more members joined the project became a bigger thing it even has an own logo for crying out loud lol.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-## Learning Laravel
+# Step 1: install composer
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but its really not.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+# Step 2: Installing using composer
+
+As i am writing this document you can tryout the development version of MyIO by creating a project with MyIO.
+ 
+```bash
+$ composer create-project johnnymast/myio dev-master
+```
+
+# Step 3: Stetting up the environment
+
+MyIO gives you the option to copying the .env.example into .env and configure your project that way. You could alternatively use the MyIO installer.
+ 
+
+```bash
+$ php artisan myio:install
+Welcome to MyIO. We will get you started quickly by asking you a few questions.
+
+ What environment will you run MyIO in [local]:
+ >
+
+ Enable debugging?  [true]:
+ >
+
+ Logging level [debug]:
+ >
+
+ Application url [http://localhost]:
+ >
+
+ Database connection [mysql]:
+ > mysql
+
+ Database host [127.0.0.1]:
+ >
+ 
+ Database port [3306]:
+ >
+
+ Database name [myio]:
+ > myio
+
+ Database user [root]:
+ > root
+ 
+ Database password [root]:
+ > root
+ 
+Have fun ...
+
+$
+
+
+```
+
+# Step 4: Run your migrations
+
+Use artisan to run your migrations. This will create your database for the website.
+
+
+```bash
+-bash-4.2$ php artisan migrate
+Migration table created successfully.
+Migrated: 2014_10_12_000000_create_users_table
+Migrated: 2014_10_12_100000_create_password_resets_table
+Migrated: 2017_03_14_172117_create_links_table
+Migrated: 2017_03_14_184704_create_hits_table
+-bash-4.2$
+
+```
+
+```bash
+$ php artisan myio:testenv
+Welcome to the MyIO testing environment.
+
+Created ./database/database.sqlite
+Created .env.testing
+
+Happy testing ...
+$
+```
+
+## Requirements
+
+The following versions of PHP are supported by this version.
+
++ PHP 5.6
++ PHP 7.0
++ PHP 7.1
++ HHVM
+
+
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+TODO
 
-## Security Vulnerabilities
+## Special thanks
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+We like to thank everyone who contributed to this product. Most of these people are straight from our [Slack](xx) but you can earn your place on this list as well.
 
+By no special order here are our contributors.
+
+| Name        | Role           |
+|:-------------|:-------------|
+| [Steve Popoola](https://github.com/stevepop)      | Design and development |  
+| [Johnny Mast](https://github.com/johnnymast)     | Core development | 
+| [Rick Bolton](https://github.com/rickbolton) | Design and Development  |  
+| [Siddharth](https://github.com/siddharthghedia) | Design and Development |  
+
+## Contact us
+
+This package is created and maintained by [LaravelUK](https://laraveluk.slack.com/). If you have any questions please feel free to contact us on our [Slack](https://laraveluk.slack.com/) space. 
+
+We all know making new friends can be hard and especially if your a little bit shy (we have been there) it can be hard to approach people. We have a nice solution for that because you can find us on [Twitter](https://twitter.com/UKLaravel) as well to hang out and read what we have to say there (You don't have to rush anything).
+ 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Copyright (c) 2017 LaravelUK
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
