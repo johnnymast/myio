@@ -13,6 +13,17 @@
 
             <h3 class="title is-3">Create Short URL</h3>
 
+
+            @if (count($errors) > 0)
+                <div class="help-custom is-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             {!! Form::label('url', 'URL', ['for' => 'url','class' => 'label']) !!}
             <p class="control">
                 {!! Form::text('url', null, ['required' => 'required', 'id' => 'url', 'class'=>'input', 'placeholder'=> 'Your URL']) !!}
