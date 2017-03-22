@@ -1,4 +1,3 @@
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/121194/23970846/ad915e18-09cb-11e7-9c8a-b84c7b15d035.png"></p>
 <p align="center">
 </p>
 
