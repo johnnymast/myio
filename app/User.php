@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements ApiUser
 {
-
     use Notifiable;
 
     /**
@@ -20,7 +19,7 @@ class User extends Authenticatable implements ApiUser
         'name',
         'email',
         'password',
-        'api_token'
+        'api_token',
     ];
 
     /**
@@ -44,7 +43,7 @@ class User extends Authenticatable implements ApiUser
     }
 
     /**
-     * User is linked to a role
+     * User is linked to a role.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
@@ -52,32 +51,30 @@ class User extends Authenticatable implements ApiUser
         return $this->belongsToMany(\App\Role::class)->withTimestamps();
     }
 
-
     /**
      * @param int $id
      *
      * @return null
      */
-    public function hasLink($id = 0) {
-        return ($this->getLink($id) != null);
+    public function hasLink($id = 0)
+    {
+        return $this->getLink($id) != null;
     }
 
-
     /**
      * @param int $id
      *
      * @return null
      */
-    public function getLink($id = 0) {
+    public function getLink($id = 0)
+    {
         if ($this->links) {
             return $this->links->find($id);
         }
-        return null;
     }
 
-
     /**
-     * Check User role
+     * Check User role.
      *
      * @param string $name
      * @return bool
@@ -94,7 +91,7 @@ class User extends Authenticatable implements ApiUser
     }
 
     /**
-     * Assign user to role
+     * Assign user to role.
      *
      * @param $role
      */
@@ -104,7 +101,7 @@ class User extends Authenticatable implements ApiUser
     }
 
     /**
-     * Remove user role
+     * Remove user role.
      *
      * @param $role
      * @return int

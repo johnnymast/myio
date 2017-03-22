@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Validator;
-use App\Transformers\LinkTransformer;
 use App\Http\Controllers\Controller;
-use Dingo\Api\Routing\Helpers;
 use App\Link;
+use App\Transformers\LinkTransformer;
+use Dingo\Api\Routing\Helpers;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * @Resource("Users")
  */
 class LinksController extends Controller
 {
-
     use Helpers;
-
 
     /**
      * Return all links created by the
@@ -41,7 +39,6 @@ class LinksController extends Controller
 
         return $this->response->collection($links, new LinkTransformer);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -71,12 +68,12 @@ class LinksController extends Controller
         /** @var \Illuminate\Validation\Factory $validator */
         $validator = Validator::make(request()->all(), [
             'url'  => 'required_without_all:urls',
-            'urls' => 'array|required_without_all:url'
+            'urls' => 'array|required_without_all:url',
         ]);
 
         if ($validator->fails()) {
             $this->response->errorBadRequest('Missing required parameters url or urls');
-        };
+        }
 
         if (request()->has('url')) {
             $item = $link->generate(request()->url, $user);
@@ -84,7 +81,6 @@ class LinksController extends Controller
             return $this->response->item($item, new LinkTransformer())->setStatusCode(201);
         } else {
             if (request()->has('urls')) {
-
                 $collection = collect();
                 foreach (request()->get('urls') as $url) {
                     $collection[] = $link->generate($url, $user);
@@ -95,9 +91,8 @@ class LinksController extends Controller
         }
     }
 
-
     /**
-     * Return one single link
+     * Return one single link.
      *
      * Status codes:
      *  200 - OK
@@ -121,13 +116,12 @@ class LinksController extends Controller
     {
         $user = resolve('ApiUser');
 
-        if ( ! $user->hasLink($id)) {
+        if (! $user->hasLink($id)) {
             $this->response->errorNotFound();
         }
 
         return $this->response->item($user->getLink($id), new LinkTransformer());
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -151,7 +145,7 @@ class LinksController extends Controller
         /** @var \App\User $user */
         $user = resolve('ApiUser');
 
-        if ( ! $user->hasLink($id)) {
+        if (! $user->hasLink($id)) {
             $this->response->errorNotFound();
         }
 

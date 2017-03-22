@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -15,9 +14,8 @@ class Link extends Model
     protected $fillable = [
         'url',
         'hash',
-        'user_id'
+        'user_id',
     ];
-
 
     /**
      * Generate a link with a unique hash.
@@ -29,18 +27,16 @@ class Link extends Model
      *
      * @return mixed
      * @internal param int $user_id
-     *
      */
     public function generate($url = '', User $user = null)
     {
-
         $hash = $this->generateUniqueHash();
         $data = [
             'url'  => $url,
             'hash' => $hash,
         ];
 
-        /**
+        /*
          * If the user_id has been offered
          * add the user_id so we can build
          * a relationship between link and
@@ -54,11 +50,10 @@ class Link extends Model
          * Finally insert the link into
          * the database.
          */
-        $link = Link::create($data);
+        $link = self::create($data);
 
         return $link;
     }
-
 
     /**
      * Create a hash for this link to use.
@@ -76,7 +71,6 @@ class Link extends Model
         return $number;
     }
 
-
     /**
      * Return the user for this link.
      *
@@ -86,7 +80,6 @@ class Link extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 
     /**
      * Return the hits for this link.

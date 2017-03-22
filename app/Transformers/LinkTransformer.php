@@ -7,9 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 class LinkTransformer extends TransformerAbstract
 {
-
     /**
-     * Turn this item object into a generic array
+     * Turn this item object into a generic array.
      *
      * @param Link $link
      *
@@ -18,8 +17,8 @@ class LinkTransformer extends TransformerAbstract
     public function transform(Link $link)
     {
         return [
-            'id'         => (int)$link->id,
-            'user_id'    => (int)$link->user_id,
+            'id'         => (int) $link->id,
+            'user_id'    => (int) $link->user_id,
             'url'        => $link->url,
             'hash'       => $link->hash,
             'created_at' => ($link->created_at) ? $link->created_at->toDateTimeString() : '',

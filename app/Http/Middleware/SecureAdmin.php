@@ -19,7 +19,6 @@ class SecureAdmin
         $this->auth = $auth;
     }
 
-
     /**
      * Handle an incoming request.
      *
@@ -36,7 +35,8 @@ class SecureAdmin
 
         // Allow access only to administrators
         if (! $this->auth->user()->hasRole('Administrator')) {
-            abort(404, "You are not authorized to view requested resource.");
+            abort(404, 'You are not authorized to view requested resource.');
+
             return redirect()->route('homepage');
         }
 
