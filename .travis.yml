@@ -13,13 +13,13 @@ env:
 #  - COMPOSER_OPTS="--prefer-lowest"
 
 before_script:
-  - php artisan myio:testenv
   - composer self-update
   - composer update
 
 
 
 script:
+  - php artisan myio:testenv
   - if [ "$TRAVIS_PHP_VERSION" == 7 ]; then vendor/bin/phpunit -d -q=brownfox; fi
 
 after_script:
