@@ -34,7 +34,7 @@ class SubmitUrlRequest extends FormRequest
         return [
             'url.required' => 'Url field cannot be blank',
             'url.max' => 'Url cannot be more than 200 characters',
-            'url.url' =>  'The url format is invalid. Format expected - http(s)://(www).domain.com'
+            'url.url' =>  'The url format is invalid. Format expected - http(s)://(www).domain.com',
         ];
     }
 }
