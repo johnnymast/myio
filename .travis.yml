@@ -15,6 +15,7 @@ before_script:
 
   - composer self-update
   - composer update
+  - php artisan myio:testenv
 
 script:
   - if [ "$TRAVIS_PHP_VERSION" == 7 ]; then vendor/bin/phpunit -d -q=brownfox; fi
