@@ -7,6 +7,9 @@ php:
   - 7.1
   - hhvm
 
+install:
+  - php artisan myio:testenv
+
 env:
 #  - COMPOSER_OPTS=""
 #  - COMPOSER_OPTS="--prefer-lowest"
@@ -16,15 +19,10 @@ before_script:
   - composer self-update
   - composer update
 
-install:
-  - php artisan myio:testenv
+
 
 script:
-#  - cd myio
-# - php artisan myio:testenv
-# - phpunit
   - if [ "$TRAVIS_PHP_VERSION" == 7 ]; then vendor/bin/phpunit -d -q=brownfox; fi
-# - if [ "$TRAVIS_PHP_VERSION" != 7 ]; then vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover -d -q=brownfox; fi
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
