@@ -29,6 +29,8 @@
                 {!! Form::text('url', null, ['required' => 'required', 'id' => 'url', 'class'=>'input', 'placeholder'=> 'Your URL']) !!}
             </p>
 
+
+            <p class="control">{!! Recaptcha::render() !!}</p>
             <div class="control is-grouped">
                 <p class="control">
                     {!! Form::submit('Create Short URL!', ['class'=>'button is-primary']) !!}
