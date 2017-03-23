@@ -24,7 +24,17 @@ class SubmitUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required',
+            'url' => 'required|max:200|url',
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'url.required' => 'Url field cannot be blank',
+            'url.max' => 'Url cannot be more than 200 characters',
+            'url.url' =>  'The url format is invalid. Format expected - http(s)://(www).domain.com'
         ];
     }
 }
