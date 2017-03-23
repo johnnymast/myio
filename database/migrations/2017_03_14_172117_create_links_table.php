@@ -13,7 +13,7 @@ class CreateLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('links', function(Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->string('url');

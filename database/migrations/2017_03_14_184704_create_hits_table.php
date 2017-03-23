@@ -13,7 +13,7 @@ class CreateHitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hits', function(Blueprint $table) {
+        Schema::create('hits', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('link_id')->unsigned()->nullable();
             $table->string('ip')->nullable();
