@@ -25,7 +25,7 @@ class SubmitUrlRequest extends FormRequest
     {
         return [
             'url' => 'required|max:200|url',
-
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 
@@ -35,6 +35,7 @@ class SubmitUrlRequest extends FormRequest
             'url.required' => 'Url field cannot be blank',
             'url.max' => 'Url cannot be more than 200 characters',
             'url.url' =>  'The url format is invalid. Format expected - http(s)://(www).domain.com',
+            'recaptcha' => 'The :attribute field is not correct.',
         ];
     }
 }
