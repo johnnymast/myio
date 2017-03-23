@@ -216,7 +216,6 @@ class Install extends Command
                 }
                 $writer->save();
             }
-            fclose($fp);
         }
 
         app(Kernel::class)->call('migrate');
