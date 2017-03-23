@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Console\Command;
+use DotEnvWriter\DotEnvWriter;
 
 class Install extends Command
 {
@@ -197,23 +199,27 @@ class Install extends Command
         unset($sampleEnv);
 
         $written = [];
+
         if (count($this->env) > 1) {
-            $fp = fopen($this->envFile, 'w+');
+            $writer = new DotEnvWriter($this->envFile);
             foreach ($this->env as $item) {
                 if ($item['type'] == 'value') {
                     if (isset($written[$item['key']])) {
                         continue;
                     }
-                    fwrite($fp, $item['key'].'='.$item['value']."\n");
+                    $writer->set($item['key'], $item['value']);
                     $written[$item['key']] = $item['value'];
                 } else {
                     if ($item['type'] == 'separator') {
-                        fwrite($fp, "\n");
+                        $writer->line();
                     }
                 }
+                $writer->save();
             }
-            fclose($fp);
         }
+
+        app(Kernel::class)->call('migrate');
+        app(Kernel::class)->call('db:seed', ['--class' => 'UserRolesSeeder']);
 
         $this->info("\r\nHave fun ... ");
     }
