@@ -2,6 +2,16 @@ filter:
     excluded_paths:
         - tests/*
 
+build:
+  dependencies:
+    before:
+      - composer self-update
+      - composer update
+
+  tests:
+    before:
+      - php artisan myio:testenv
+
 checks:
     php:
         code_rating: true

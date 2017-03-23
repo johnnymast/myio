@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Contracts\ApiUser;
-use App\User;
 use Illuminate\Support\ServiceProvider;
 
-class ApiServiceProvider extends ServiceProvider
+class FlashServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -15,14 +13,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        App()->bind('ApiUser', function () {
-            $user = auth()->user();
-            if (! $user) {
-                return;
-            }
-
-            return User::find($user->id);
-        });
+        //
     }
 
     /**
@@ -32,6 +23,8 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('flash', function() {
+            return $this->app->make(\App\Session\FlashMessage::class);
+        });
     }
 }

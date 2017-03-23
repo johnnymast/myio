@@ -39,7 +39,7 @@ class SystemController extends Controller
      *
      * @param  \App\Http\Requests\SubmitUrlRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(SubmitUrlRequest $request, Link $link)
     {

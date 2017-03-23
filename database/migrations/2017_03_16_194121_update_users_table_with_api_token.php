@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateUsersTableWithApiToken extends Migration
+class AddActivationFlagToUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class UpdateUsersTableWithApiToken extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('api_token')->nullable()->after('remember_token');
+        Schema::table('users', function(Blueprint $table) {
+            $table->integer('activated')->default(0);
+        });
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->string('email_token')->nullable();
         });
     }
 
@@ -25,5 +29,12 @@ class UpdateUsersTableWithApiToken extends Migration
      */
     public function down()
     {
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('activated');
+        });
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('email_token');
+        });
     }
 }
