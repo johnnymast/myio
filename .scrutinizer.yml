@@ -3,9 +3,9 @@ filter:
         - tests/*
 
 build:
-   project_setup:
-           before:
-               - php artisan myio:testenv
+  tests:
+    before:
+      - php artisan myio:testenv
 
 checks:
     php:
