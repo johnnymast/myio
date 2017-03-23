@@ -19,7 +19,7 @@ First thing you is installing composer on to your system. You can get composer [
 As i am writing this document you can tryout the development version of MyIO by creating a project with MyIO.
  
 ```bash
-$ composer create-project johnnymast/myio dev-master
+$  composer create-project -sdev johnnymast/myio
 ```
 
 # Step 3: Stetting up the environment
