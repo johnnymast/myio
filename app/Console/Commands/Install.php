@@ -216,6 +216,7 @@ class Install extends Command
             fclose($fp);
         }
 
+        $this->app[Kernel::class]->call('migrate');
         $this->app[Kernel::class]->call('db:seed', ['--class' => 'UserRolesSeeder']);
 
         $this->info("\r\nHave fun ... ");
