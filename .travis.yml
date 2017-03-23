@@ -7,15 +7,13 @@ php:
   - 7.1
   - hhvm
 
-install:
-  - php artisan myio:testenv
 
 env:
 #  - COMPOSER_OPTS=""
 #  - COMPOSER_OPTS="--prefer-lowest"
 
 before_script:
-
+  - php artisan myio:testenv
   - composer self-update
   - composer update
 
