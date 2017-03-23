@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Route::bind('linkHash', function ($hash) {
+        Route::bind('linkHash', function($hash) {
             try {
                 return Link::where('hash', $hash)->firstOrFail();
             } catch (ModelNotFoundException $e) {
