@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Console\Command;
 
 class Install extends Command
@@ -215,7 +216,7 @@ class Install extends Command
             fclose($fp);
         }
 
-       // $this->app[Kernel::class]->call('db:seed', ['--class' => $class]);
+        $this->app[Kernel::class]->call('db:seed', ['--class' => 'UserRolesSeeder']);
 
         $this->info("\r\nHave fun ... ");
     }
