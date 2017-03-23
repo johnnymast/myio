@@ -19,6 +19,7 @@ before_script:
 script:
   - cd myio
   - php artisan myio:testenv
+  - phpunit
 #  - if [ "$TRAVIS_PHP_VERSION" == 7 ]; then vendor/bin/phpunit -d -q=brownfox; fi
   - if [ "$TRAVIS_PHP_VERSION" != 7 ]; then vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover -d -q=brownfox; fi
 
