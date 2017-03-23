@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Link;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
         Route::bind('linkHash', function ($hash) {
-            return Link::where('hash', $hash)->firstOrFail();
+            try {
+                return Link::where('hash', $hash)->firstOrFail();
+            } catch (ModelNotFoundException $e) {
+                redirect('/')->send();
+            }
         });
 
         parent::boot();
