@@ -2,6 +2,11 @@ filter:
     excluded_paths:
         - tests/*
 
+build:
+   project_setup:
+           before:
+               - php artisan myio:testenv
+
 checks:
     php:
         code_rating: true
