@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Console\Command;
 use DotEnvWriter\DotEnvWriter;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Kernel;
 
 class Install extends Command
 {
