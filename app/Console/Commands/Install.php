@@ -215,6 +215,8 @@ class Install extends Command
             fclose($fp);
         }
 
+       // $this->app[Kernel::class]->call('db:seed', ['--class' => $class]);
+
         $this->info("\r\nHave fun ... ");
     }
 }
