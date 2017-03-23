@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Route::bind('link_hash', function ($hash = '') {
+        Route::bind('link_hash', function($hash = '') {
             return Link::where('hash', $hash)->first();
         });
     }

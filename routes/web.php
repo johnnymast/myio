@@ -19,7 +19,7 @@ Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
 
 Route::get('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::get('/home', function () {
+Route::get('/home', function() {
     return redirect()->route('url_create');
 })->middleware('auth')->name('home');
 
@@ -29,7 +29,7 @@ Route::get('/home', function () {
 Route::group([
     'prefix'     => '/admin',
     'middleware' => ['auth'],
-], function () {
+], function() {
     //LinksController
     //UsersController
 });
@@ -40,7 +40,7 @@ Route::group([
 Route::group([
     'prefix'     => '/dashboard',
     'middleware' => ['auth'],
-], function () {
+], function() {
     Route::resource('links', 'UserDashboardController');
 });
 
