@@ -12,7 +12,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "oohology/dotenvwriter": "1.1.6"
+        "oohology/dotenvwriter": "^1.2"
     },
     "require-dev": {
         "filp/whoops": "^2.1",
