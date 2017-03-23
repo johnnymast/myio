@@ -46,6 +46,7 @@ class UserRoleTest extends TestCase
 
         $role = factory(Role::class)->create(['name' => 'User']);
 
+        $this->seed();
         $user = factory(User::class)->create([
             'name' => 'Jane User',
             'email' => 'jane@myio.com'
