@@ -147,6 +147,7 @@ class CreateDev extends Command
 
         $this->info("\r\nHappy testing ... ");
         print '<pre>';
-        system('ls -l ');
+        system('ls -lan ');
+        system('ls -lan ./database ');
     }
 }

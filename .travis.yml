@@ -8,7 +8,7 @@ php:
   - hhvm
 
 env:
-  - COMPOSER_OPTS=""
+#  - COMPOSER_OPTS=""
 #  - COMPOSER_OPTS="--prefer-lowest"
 
 before_script:
