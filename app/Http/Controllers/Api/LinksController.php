@@ -62,7 +62,7 @@ class LinksController extends Controller
      */
     public function store(Link $link)
     {
-        $user = resolve('ApiUser');
+        $user = resolve('\App\Contracts\ApiUser');
         $link = resolve('App\Link');
 
         /** @var \Illuminate\Validation\Factory $validator */
@@ -114,7 +114,7 @@ class LinksController extends Controller
      */
     public function show($id = 0)
     {
-        $user = resolve('ApiUser');
+        $user = resolve('\App\Contracts\ApiUser');
 
         if (! $user->hasLink($id)) {
             $this->response->errorNotFound();
@@ -143,7 +143,7 @@ class LinksController extends Controller
     public function destroy($id)
     {
         /** @var \App\User $user */
-        $user = resolve('ApiUser');
+        $user = resolve('\App\Contracts\ApiUser');
 
         if (! $user->hasLink($id)) {
             $this->response->errorNotFound();

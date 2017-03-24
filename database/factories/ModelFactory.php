@@ -36,3 +36,10 @@ $factory->define(App\Link::class, function (Faker\Generator $faker) {
         'hash' => $faker->unique()->name,
     ];
 });
+
+$factory->define(App\Hit::class, function (Faker\Generator $faker) {
+    return [
+        'ip' => $faker->ipv4,
+        'user_agent' => $faker->userAgent,
+    ];
+});

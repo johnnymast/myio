@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 $api = app('Dingo\Api\Routing\Router');
 
@@ -23,4 +23,5 @@ $api->version('v1', ['middleware' => 'auth:api'], function ($api) {
     $api->resource('links', 'App\Http\Controllers\Api\LinksController', [
         'except' => ['update'],
     ]);
+    $api->get('statistics/link/{link}', 'App\Http\Controllers\Api\StatisticsController@show');
 });
