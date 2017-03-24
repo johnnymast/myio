@@ -179,6 +179,9 @@ return [
         App\Providers\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+        /* Dingo A RESTful API package for the Laravel and Lumen frameworks. */
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+
         /* Recapcha */
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
     ],
