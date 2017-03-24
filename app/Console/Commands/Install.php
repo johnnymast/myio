@@ -121,6 +121,20 @@ class Install extends Command
                 'default'  => 'root',
                 'key'      => 'DB_PASSWORD',
                 'answers'  => [],
+                'nextline' => 'separator',
+            ],
+            [
+                'question' => 'Recaptcha public key',
+                'default'  => 'null',
+                'key'      => 'RECAPTCHA_PUBLIC_KEY',
+                'answers'  => [],
+            ],
+            [
+                'question' => 'Recaptcha private key',
+                'default'  => 'null',
+                'key'      => 'RECAPTCHA_PRIVATE_KEY',
+                'answers'  => [],
+                'nextline' => 'separator',
             ],
         ];
     }

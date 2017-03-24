@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SubmitUrlRequest;
+use App\Http\Requests\Frontend\SubmitUrlRequest;
 use App\Link;
 
 class SystemController extends Controller
 {
+
     /**
      * Log the hit and redirect to the url.
      *
@@ -17,16 +18,16 @@ class SystemController extends Controller
     public function show(Link $link)
     {
         $link->hits()->create([
-            'ip' => request()->ip(),
+            'ip'         => request()->ip(),
             'user_agent' => request()->server('HTTP_USER_AGENT'),
         ]);
 
         return redirect($link->url);
     }
 
+
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -34,10 +35,11 @@ class SystemController extends Controller
         return view('dashboard.links.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\SubmitUrlRequest $request
+     * @param \App\Http\Requests\Frontend\SubmitUrlRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

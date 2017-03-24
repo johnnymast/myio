@@ -28,8 +28,9 @@ Route::group([
     'prefix' => '/admin',
     'middleware' => ['auth'],
 ], function () {
-    //LinksController
-    //UsersController
+    Route::resource('links', 'Admin\LinksController');
+    Route::resource('users', 'Admin\UsersController');
+    Route::resource('settings', 'Admin\SettingsController');
 });
 
 /*
