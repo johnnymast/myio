@@ -100,4 +100,23 @@ class User extends Authenticatable
         $this->email_token = null;
         $this->save();
     }
+
+    /**
+     * Count the total number of hits a user has had across all links
+     * @return integer hit count
+     */
+    public function totalHits()
+    {
+        $totalHits = 0;
+
+        if (empty($this->links->hits)) {
+            $this->load('links.hits');
+        }
+
+        foreach($this->links as $link) {
+            $totalHits += $link->hits->count();
+        }
+
+        return $totalHits;
+    }
 }

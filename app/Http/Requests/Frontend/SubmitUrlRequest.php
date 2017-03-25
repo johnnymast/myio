@@ -25,7 +25,7 @@ class SubmitUrlRequest extends FormRequest
     {
         return [
             'url' => 'required|max:200|url',
-            'g-recaptcha-response' => 'required|recaptcha',
+            // 'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 

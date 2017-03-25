@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Link;
+
+use redirect;
+use Auth;
+
 class UserDashboardController extends Controller
 {
     /**
@@ -13,7 +18,10 @@ class UserDashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.layouts.master');
+        $user = Auth::user()->load('links.hits');
+        $linkCount = $user->links->count();
+
+        return view('dashboard.layouts.master', compact('user', 'linkCount'));
     }
 
     /**
@@ -82,8 +90,15 @@ class UserDashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Link $link)
     {
-        //
+        if (Auth::id() === $link->user_id) {
+          $link->delete();
+          $message = "Link has been deleted!";
+        } else {
+          $message = "Unable to delete another users link!";
+        }
+
+        return redirect()->route('links.index')->with(["message" => $message]);
     }
 }
