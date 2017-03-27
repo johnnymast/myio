@@ -12,10 +12,10 @@
 <body>
   <div id="app">
     <div class="site-content">
-      @include('frontend.layouts.partials._nav')
+      @include('layouts.partials._nav')
 
       @if (Session::get('flash_notification.message'))
-        @include('frontend.layouts.partials._flash')
+        @include('layouts.partials._flash')
       @endif
 
       @yield('content')
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  @include('frontend.layouts.partials._footer')
+  @include('layouts.partials._footer')
 
 <script src="{{ mix('/js/app.js') }}"></script>
 
