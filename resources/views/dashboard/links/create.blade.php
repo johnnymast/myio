@@ -4,7 +4,6 @@
 
     <div class="container is-fluid full-width">
         <section class="hero is-medium hero-background" style="padding-top:43px;">
-            <!-- Hero content: will be in the middle -->
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <div class="columns">
@@ -36,9 +35,7 @@
                                             {!! Form::submit('Create It!', ['class'=>'button is-info']) !!}
                                         </div>
 
-                                        {{--<p class="control">{!! Recaptcha::render() !!}</p>--}}
-
-
+                                        <p class="control">{!! Recaptcha::render() !!}</p>
                                     </div>
                                     {{ Form::close() }}
                                 </div>
