@@ -6,7 +6,7 @@
     @endif
   </div>
       <div id="nav-menu" class="nav-right nav-menu">
-        <a class="nav-item" href="https://github.com/johnnymast/myio">
+        <a class="nav-item" href="{{ route('homepage') }}">
           Home
         </a>
         <a class="nav-item" href="https://github.com/johnnymast/myio">
