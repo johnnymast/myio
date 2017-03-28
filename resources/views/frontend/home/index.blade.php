@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('layouts.master')
 
 
 @section('content')
@@ -12,7 +12,7 @@
                             Welcome To MyIO
                         </h1>
                         <h2 class="subtitle color-is-white">
-                            Subtitle/slogan
+                            <a href="{{ route('url_create') }}">Click to create Short URL</a>
                         </h2>
                     </div>
                 </div>
