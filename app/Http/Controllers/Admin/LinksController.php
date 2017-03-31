@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\LinksRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LinksRequest;
 use App\Link;
+use Illuminate\Http\Request;
 
 class LinksController extends Controller
 {
@@ -29,7 +29,6 @@ class LinksController extends Controller
         // Show create create link form
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +40,6 @@ class LinksController extends Controller
     {
         // Store the link
     }
-
 
     /**
      * Display the specified resource.
@@ -57,7 +55,6 @@ class LinksController extends Controller
         dd($link);
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,7 +67,6 @@ class LinksController extends Controller
     {
         // edit this link
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -85,7 +81,6 @@ class LinksController extends Controller
     {
         // Update the link
     }
-
 
     /**
      * Remove the specified resource from storage.

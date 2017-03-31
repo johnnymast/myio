@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\UserRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\User;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -29,7 +29,6 @@ class UsersController extends Controller
         // Show the create user form
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +40,6 @@ class UsersController extends Controller
     {
         // Store the user
     }
-
 
     /**
      * Display the specified resource.
@@ -56,7 +54,6 @@ class UsersController extends Controller
         // Show the user
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -69,7 +66,6 @@ class UsersController extends Controller
     {
         // Edit the user
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -84,7 +80,6 @@ class UsersController extends Controller
     {
         // Update the user
     }
-
 
     /**
      * Remove the specified resource from storage.

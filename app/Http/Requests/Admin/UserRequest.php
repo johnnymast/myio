@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'email' => [
                 'required',
                 Rule::unique('users')->ignore(auth()->user()->id),
-                'max:255'
+                'max:255',
             ],
             'password' => 'required_with:password_again',
             'password_again' => 'required_with:password',
