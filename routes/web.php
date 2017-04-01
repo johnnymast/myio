@@ -33,6 +33,7 @@ Route::group([
     Route::resource('links', 'Admin\LinksController');
     Route::resource('users', 'Admin\UsersController');
     Route::resource('settings', 'Admin\SettingsController');
+    Route::get('/', 'Admin\DashboardController@index');
 });
 
 /*
