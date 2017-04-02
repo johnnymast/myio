@@ -30,10 +30,19 @@ Route::group([
     'prefix'     => '/admin',
     'middleware' => ['auth'],
 ], function () {
-    Route::resource('links', 'Admin\LinksController');
-    Route::resource('users', 'Admin\UsersController');
-    Route::resource('settings', 'Admin\SettingsController');
-    Route::get('/', 'Admin\DashboardController@index');
+    Route::resource('links', 'Admin\LinksController', [
+        'names' => [
+            'index' => 'admin.links.index',
+            'show'  => 'admin.links.show',
+        ]
+    ]);
+    Route::resource('users', 'Admin\UsersController', [
+        'names' => [
+            'index' => 'admin.users.index',
+            'show'  => 'admin.users.show',
+        ]
+    ]);
+    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 });
 
 /*

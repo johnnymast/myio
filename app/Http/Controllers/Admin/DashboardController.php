@@ -15,5 +15,6 @@ class DashboardController extends Controller
     public function index()
     {
         // List links
+        return view('admin.dashboard.index');
     }
 }

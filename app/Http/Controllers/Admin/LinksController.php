@@ -16,7 +16,8 @@ class LinksController extends Controller
      */
     public function index()
     {
-        // List links
+        $links = Link::All();
+        return view('admin.links.index', compact('links'));
     }
 
     /**
