@@ -9,18 +9,7 @@ body {
 .aside {
   background-color: #232B2D;
 }
-.aside .uploader {
-  background-color: #2EB398;
-  height: 95px;
-  margin:0 -10px;
-  padding: 25px 30px;
-}
-.aside .uploader .button {
-  background-color: transparent;
-  border: 3px dashed #F6F7F7;
-  padding: 20px 70px;
-  color: #F6F7F7;
-}
+
 .aside .main {
   padding: 40px;
   color: #6F7B7E;
@@ -77,32 +66,12 @@ body {
 .nav.menu .nav-item.is-active .icon-btn .fa {
   color: #2EB398;
 }
-.files {
-  padding: 50px 0;
+
+ul.pagination-list {
+  margin-left: 0px;
 }
-.file {
-  display: block;
-  padding: 20px;
-}
-a.file:not(.button) {
-  border-bottom: none;
-  border-radius: 4px;
-}
-.file:hover, .file.active, .file:active {
-  background-color: #E4E9EB;
-}
-.file .image img {
-  padding-bottom: 10px;
-}
-.file .name {
-  font-weight: bold;
-  word-wrap: break-word;
-  word-break: break-all;
-  font-size: 16px;
-  color: #69707a;
-}
-.file .timestamp {
-  font-weight: bold;
-  font-size: 14px;
-  color: #B9C2C4;
+
+.pagination, .pagination-list {
+  list-style-position: inside !important;
+  list-style:none !important;
 }

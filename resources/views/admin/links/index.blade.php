@@ -3,6 +3,7 @@
 @section('content')
     <div class="title is-2">Links</div>
     <div class="columns files">
+
         <table class="table">
             <thead>
             <th>Real URL</th>
@@ -10,6 +11,7 @@
             <th>User</th>
             <th>Created</th>
             <th>Click troughs</th>
+            <th></th>
             </thead>
             <tbody>
             @if (count($links) > 0)
@@ -23,6 +25,12 @@
                         <td><a href="{{route('admin.users.show', $link['user']['id'])}}"> {{$link['user']['name']}}</a></td>
                         <td>{{$link['created_at']}}</td>
                         <td>{{ count($link['hits']) }} {{ $pural }}</td>
+                        <td><a class="button is-danger is-outlined">
+                                <span>Delete</span>
+                                <span class="icon is-small">
+      <i class="fa fa-times"></i>
+    </span>
+                            </a></td>
                     </tr>
                 @endforeach
             @else
@@ -31,10 +39,12 @@
                 </tr>
             @endif
             </tbody>
-
         </table>
 
+
     </div>
+
+    {{ $links->links('layouts.partials.admin._pagination') }}
 
 
 @endsection

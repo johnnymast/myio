@@ -16,8 +16,7 @@ class LinksController extends Controller
      */
     public function index()
     {
-        $links = Link::All();
-        return view('admin.links.index', compact('links'));
+        return view('admin.links.index', ['links' => Link::paginate(config('myio.admin.pagination.items_per_page'))]);
     }
 
     /**

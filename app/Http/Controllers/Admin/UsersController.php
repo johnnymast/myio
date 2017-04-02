@@ -16,8 +16,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::All();
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', ['users' => User::paginate(config('myio.admin.pagination.items_per_page'))]);
     }
 
     /**

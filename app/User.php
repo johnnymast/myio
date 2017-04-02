@@ -36,7 +36,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function links()
+    public function generatedLinks()
     {
         return $this->hasMany(Link::class);
     }
