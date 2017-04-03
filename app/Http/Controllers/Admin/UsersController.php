@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\UserRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\User;
+use Illuminate\Http\Request;
+use App\Session\Flash;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -19,9 +21,9 @@ class UsersController extends Controller
         return view('admin.users.index', ['users' => User::paginate(config('myio.admin.pagination.items_per_page'))]);
     }
 
+
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -53,7 +55,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        // Show the user
+        // NOT NEEDED ??
+        return view('admin.users.form', compact('user'));
     }
 
 
@@ -67,7 +70,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        // Edit the user
+        return view('admin.users.form', compact('user'));
     }
 
 
@@ -82,7 +85,17 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        // Update the user
+        $user->fill(['name' => $request->name, 'email' => $request->email])->save();
+
+        if (! empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        Flash::success('User updated');
+
+        return redirect()->route('admin.users.edit', $user['id']);
     }
 
 

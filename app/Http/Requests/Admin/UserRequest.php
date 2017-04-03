@@ -14,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => [
                 'required',
-                Rule::unique('users')->ignore(auth()->user()->id),
+                Rule::unique('users')->ignore(request()->route('user')->id),
                 'max:255'
             ],
             'password' => 'required_with:password_again',

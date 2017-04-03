@@ -40,6 +40,8 @@ Route::group([
         'names' => [
             'index' => 'admin.users.index',
             'show'  => 'admin.users.show',
+            'edit'  => 'admin.users.edit',
+            'update'=> 'admin.users.update'
         ]
     ]);
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@
 </head>
 <body>
 @include('layouts.partials.admin._nav')
-<div class="columns">
+<div class="columns" id="app">
   @include('layouts.partials.admin._sidebar')
 
   <div class="content column is-10">
