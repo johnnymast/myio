@@ -28,6 +28,9 @@ class LinksRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [

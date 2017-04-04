@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\Notifications\EmailVerification;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Session\Flash;
@@ -28,7 +30,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        // Show the create user form
+        return view('admin.users.create', [
+            'roles' => Role::all(),
+        ]);
     }
 
 
@@ -41,22 +45,28 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // Store the user
-    }
+        $user = new User();
+        $user->name = $request->name;
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->activated = $request->activated;
+        $user->save();
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param User $user
-     *
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
-     */
-    public function show(User $user)
-    {
-        // NOT NEEDED ??
-        return view('admin.users.form', compact('user'));
+        $user->assignRole(Role::find($request->role));
+        $user->save();
+
+        if ($request->has('act_mail')) {
+            $user->notify(new EmailVerification($user));
+        }
+
+        if ($user->save()) {
+            Flash::success('User created');
+        } else {
+            Flash::error('Could not create new user.');
+        }
+
+        return redirect()->route('admin.users.edit', $user['id']);
     }
 
 
@@ -70,7 +80,10 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.form', compact('user'));
+        return view('admin.users.edit', [
+            'user' => $user,
+            'roles' => Role::all(),
+        ]);
     }
 
 
@@ -78,22 +91,28 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param UserRequest|Request $request
-     * @param User                $user
+     * @param User $user
      *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->fill(['name' => $request->name, 'email' => $request->email])->save();
+        $user->fill(['name' => $request->name, 'email' => $request->email, 'activated' => $request->activated])->save();
 
-        if (! empty($request->password)) {
+        if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
 
-        $user->save();
+        $user->removeRole($user->roles->first()->id);
+        $user->assignRole(Role::find($request->role));
 
-        Flash::success('User updated');
+        if ($user->save()) {
+            Flash::success('User updated');
+        } else {
+            Flash::error('Could not update this user.');
+        }
+
 
         return redirect()->route('admin.users.edit', $user['id']);
     }
@@ -109,6 +128,13 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        // Destroy the user
+
+        if ($user->delete()) {
+            Flash::success('User deleted.');
+        } else {
+            Flash::error('Could not delete this user.');
+        }
+
+        return redirect()->route('admin.users.index');
     }
 }

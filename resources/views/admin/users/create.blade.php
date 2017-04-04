@@ -5,17 +5,22 @@
         @include('layouts.partials.admin._flash')
     @endif
 
-    <div class="title is-2">User `{{$user['name']}}`</div>
-
+    <div class="title is-2">New User</div>
+    <a href="{{ route('admin.users.index') }}" class="button">
+    <span class="icon">
+      <i class="fa fa-user"></i>
+    </span>
+        <span>User list</span>
+    </a>
     <div class="columns">
 
 
-        {{ Form::open(['route' => ['admin.users.update', $user['id']], 'method'=>'put']) }}
+        {{ Form::open(['route' => ['admin.users.store'], 'method'=>'post']) }}
         {{ csrf_field() }}
 
         {{form::label('name', 'Name', ['class' => 'label'])}}
         <div class="control">
-            {{form::text('name', $user['name'], ['placeholder' => 'Name of the user', 'class' => 'input form-control', 'autofocus' => true])}}
+            {{form::text('name', '', ['placeholder' => 'Name of the user', 'class' => 'input form-control', 'autofocus' => true])}}
             @if ($errors->has('name'))
                 <span class="help is-danger">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -59,10 +64,23 @@
 
         {{form::label('	email', 'Email', ['class' => 'label'])}}
         <div class="control">
-            {{form::email('email', $user['email'], ['placeholder' => 'Email address', 'class' => 'input form-control'])}}
+            {{form::email('email', '', ['placeholder' => 'Email address', 'class' => 'input form-control'])}}
             @if ($errors->has('email'))
                 <span class="help is-danger">
                                             <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+            @endif
+        </div>
+
+        {{form::label('role', 'Role', ['class' => 'label'])}}
+        <div class="control">
+
+            <span class="select is-medium">
+                {{form::select('role', $roles->pluck('name', 'id'), '')}}
+            </span>
+            @if ($errors->has('activated'))
+                <span class="help is-danger">
+                                            <strong>{{ $errors->first('role') }}</strong>
                                         </span>
             @endif
         </div>
@@ -71,7 +89,7 @@
         <div class="control">
 
             <span class="select is-medium">
-                {{form::select('activated',['No', 'Yes'], $user['activated'])}}
+                {{form::select('activated',['No', 'Yes'], '')}}
             </span>
             @if ($errors->has('activated'))
                 <span class="help is-danger">
@@ -79,6 +97,14 @@
                                         </span>
             @endif
         </div>
+
+
+
+        <div class="control">
+                {{Form::label('act_mail', 'Send activation mail after creation', ['class' => 'label'])}}
+                {{Form::checkbox('act_mail', true, false) }}
+        </div>
+
 
         {{ form::submit('Submit', ['class' => 'button is-primary']) }}
         {{ form::close() }}

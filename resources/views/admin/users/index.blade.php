@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if (Session::get('flash_notification.message'))
+        @include('layouts.partials.admin._flash')
+    @endif
+
     <div class="title is-2">Users</div>
+    <a href="{{ route('admin.users.create') }}" class="button">
+    <span class="icon">
+      <i class="fa fa-user-circle"></i>
+    </span>
+        <span>New user</span>
+    </a>
+
     <div class="columns files">
         <table class="table">
             <thead>
@@ -19,12 +30,22 @@
                         <td>{{$user['email']}}</td>
                         <td>{{$user['created_at']}}</td>
                         <td>{{$user['activated'] ? 'Yes' : 'No'}}</td>
-                        <td><a class="button is-danger is-outlined">
+                        <td>
+
+                            {!! Form::open(['method' => 'DELETE', 'id' => 'user_row'.$user['id'],  'route' => ['admin.users.destroy', $user['id']]]) !!}
+                            {{ csrf_field() }}
+
+                            <a href="#" class="button is-danger is-outlined"
+                               onclick="return confirmDelete({{$user['id']}});">
                                 <span>Delete</span>
                                 <span class="icon is-small">
-      <i class="fa fa-times"></i>
-    </span>
-                            </a></td>
+                                  <i class="fa fa-times"></i>
+                                </span>
+                            </a>
+
+                            {!! Form::close() !!}
+
+                        </td>
                     </tr>
                 @endforeach
             @else
@@ -39,5 +60,12 @@
     </div>
     {{$users->links('layouts.partials.admin._pagination')}}
 
+    <script>
+        function confirmDelete(user_id) {
+            if (confirm('Are you sure to delete this user?')) {
+                document.getElementById('user_row'+user_id).submit();
+            }
+        }
+    </script>
 
 @endsection

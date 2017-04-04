@@ -27,21 +27,23 @@ Route::get('/home', function () {
  * Admin routes
  */
 Route::group([
-    'prefix'     => '/admin',
+    'prefix' => '/admin',
     'middleware' => ['auth'],
 ], function () {
     Route::resource('links', 'Admin\LinksController', [
         'names' => [
             'index' => 'admin.links.index',
-            'show'  => 'admin.links.show',
+            'show' => 'admin.links.show',
         ]
     ]);
     Route::resource('users', 'Admin\UsersController', [
         'names' => [
             'index' => 'admin.users.index',
-            'show'  => 'admin.users.show',
-            'edit'  => 'admin.users.edit',
-            'update'=> 'admin.users.update'
+            'edit' => 'admin.users.edit',
+            'create' => 'admin.users.create',
+            'destroy' => 'admin.users.destroy',
+            'update' => 'admin.users.update',
+            'store' => 'admin.users.store',
         ]
     ]);
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
@@ -51,7 +53,7 @@ Route::group([
  * User Dashboard
  */
 Route::group([
-    'prefix'     => '/dashboard',
+    'prefix' => '/dashboard',
     'middleware' => ['auth'],
 ], function () {
     Route::resource('links', 'UserDashboardController');
