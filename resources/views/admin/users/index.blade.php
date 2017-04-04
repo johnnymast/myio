@@ -60,6 +60,13 @@
     </div>
     {{$users->links('layouts.partials.admin._pagination')}}
 
+    <strong>TODO:</strong>
+    <ol>
+        <li>Clean up deletion url</li>
+        <li>Create: Make mail token</li>
+        <li>Create: Only provide the email activation link IF the active is set to no.</li>
+        <li>Config: Set option in admin config for new users active/inactive.</li>
+    </ol>
     <script>
         function confirmDelete(user_id) {
             if (confirm('Are you sure to delete this user?')) {
