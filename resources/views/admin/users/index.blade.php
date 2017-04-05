@@ -7,12 +7,12 @@
 
     <div class="columns">
         <div class="column is-two-thirds">
-            <div class="title is-2">Users</div>
+            <div class="title is-2">@lang('Users')</div>
             <a href="{{ route('admin.users.create') }}" class="button">
                 <span class="icon">
                   <i class="fa fa-user-circle"></i>
                 </span>
-                <span>New user</span>
+                <span>@lang('New user')</span>
             </a>
         </div>
     </div>
@@ -69,7 +69,6 @@
 
     <strong>TODO:</strong>
     <ol>
-        <li>Clean up deletion url</li>
         <li>Create: Make mail token</li>
         <li>Create: Only provide the email activation link IF the active is set to no.</li>
     </ol>

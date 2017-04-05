@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\LinksRequest;
+use App\Session\Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Link;
@@ -29,7 +30,6 @@ class LinksController extends Controller
         // Show create create link form
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +41,6 @@ class LinksController extends Controller
     {
         // Store the link
     }
-
 
     /**
      * Display the specified resource.
@@ -57,7 +56,6 @@ class LinksController extends Controller
         dd($link);
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -71,12 +69,11 @@ class LinksController extends Controller
         // edit this link
     }
 
-
     /**
      * Update the specified resource in storage.
      *
      * @param LinksRequest|Request $request
-     * @param Link                 $link
+     * @param Link $link
      *
      * @return \Illuminate\Http\Response
      * @internal param int $id
@@ -85,7 +82,6 @@ class LinksController extends Controller
     {
         // Update the link
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -97,6 +93,12 @@ class LinksController extends Controller
      */
     public function destroy(Link $link)
     {
-        // Delete the link
+        if ($link->delete()) {
+            Flash::success('Link deleted.');
+        } else {
+            Flash::error('Could not delete this link.');
+        }
+
+        return redirect()->route('admin.links.index');
     }
 }

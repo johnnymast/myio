@@ -34,6 +34,7 @@ Route::group([
         'names' => [
             'index' => 'admin.links.index',
             'show' => 'admin.links.show',
+            'destroy' => 'admin.links.destroy',
         ]
     ]);
     Route::resource('users', 'admin\UsersController', [
