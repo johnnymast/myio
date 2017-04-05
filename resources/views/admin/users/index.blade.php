@@ -5,22 +5,30 @@
         @include('layouts.partials.admin._flash')
     @endif
 
-    <div class="title is-2">Users</div>
-    <a href="{{ route('admin.users.create') }}" class="button">
-    <span class="icon">
-      <i class="fa fa-user-circle"></i>
-    </span>
-        <span>New user</span>
-    </a>
+    <div class="columns">
+        <div class="column is-two-thirds">
+            <div class="title is-2">Users</div>
+            <a href="{{ route('admin.users.create') }}" class="button">
+                <span class="icon">
+                  <i class="fa fa-user-circle"></i>
+                </span>
+                <span>New user</span>
+            </a>
+        </div>
+    </div>
 
-    <div class="columns files">
+
+
+    <div class="columns">
         <table class="table">
             <thead>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Created</th>
-            <th>Active</th>
-            <th></th>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
             @if (count($users) > 0)
@@ -44,7 +52,6 @@
                             </a>
 
                             {!! Form::close() !!}
-
                         </td>
                     </tr>
                 @endforeach
@@ -65,14 +72,12 @@
         <li>Clean up deletion url</li>
         <li>Create: Make mail token</li>
         <li>Create: Only provide the email activation link IF the active is set to no.</li>
-        <li>Config: Set option in admin config for new users active/inactive.</li>
     </ol>
     <script>
         function confirmDelete(user_id) {
             if (confirm('Are you sure to delete this user?')) {
-                document.getElementById('user_row'+user_id).submit();
+                document.getElementById('user_row' + user_id).submit();
             }
         }
     </script>
-
 @endsection

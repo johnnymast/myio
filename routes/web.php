@@ -24,19 +24,19 @@ Route::get('/home', function () {
 })->middleware('auth')->name('home');
 
 /*
- * Admin routes
+ * admin routes
  */
 Route::group([
     'prefix' => '/admin',
     'middleware' => ['auth'],
 ], function () {
-    Route::resource('links', 'Admin\LinksController', [
+    Route::resource('links', 'admin\LinksController', [
         'names' => [
             'index' => 'admin.links.index',
             'show' => 'admin.links.show',
         ]
     ]);
-    Route::resource('users', 'Admin\UsersController', [
+    Route::resource('users', 'admin\UsersController', [
         'names' => [
             'index' => 'admin.users.index',
             'edit' => 'admin.users.edit',
@@ -46,7 +46,7 @@ Route::group([
             'store' => 'admin.users.store',
         ]
     ]);
-    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+    Route::get('/', 'admin\DashboardController@index')->name('admin.dashboard.index');
 });
 
 /*

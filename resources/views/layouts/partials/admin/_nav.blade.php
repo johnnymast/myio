@@ -1,8 +1,8 @@
 <nav class="nav is-dark has-shadow" id="top">
     <div class="container">
         <div class="nav-left">
-            <a class="nav-item" href="../index.html">
-                <img src="../images/bulma.png" alt="Description">
+            <a class="nav-item" href="{{ route('admin.dashboard.index') }}">
+                <img src="/images/bulma.png" alt="Description">
             </a>
         </div>
         <span class="nav-toggle">
