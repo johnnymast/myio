@@ -32,6 +32,7 @@ class LinksController extends Controller
     public function show(Link $link)
     {
         $hits = Hit::where('link_id', $link->id)->paginate(config('myio.admin.pagination.items_per_page'));
+
         return view('admin.links.show', compact('link', 'hits'));
     }
 

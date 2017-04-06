@@ -38,7 +38,7 @@
                                     <span class="icon is-small">
                                       <i class="fa fa-copy"></i>
                                     </span>
-                                    <span>Copy</span>
+                                    <span>@lang('Copy')</span>
                                 </button>
 
                             </td>
@@ -54,7 +54,7 @@
 
                                 <a href="#" class="button is-danger is-outlined"
                                    @click="confirmDeletingItem({{$link['id']}}, 'link_row');">
-                                    <span>Delete</span>
+                                    <span>@lang('Delete')</span>
                                     <span class="icon is-small">
                                   <i class="fa fa-times"></i>
                                 </span>
@@ -66,7 +66,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td align="center" style="text-align: center" colspan="6">Currently there are no links</td>
+                        <td align="center" style="text-align: center" colspan="6">@lang('Currently there are no links')</td>
                     </tr>
                 @endif
                 </tbody>

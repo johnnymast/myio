@@ -7,29 +7,17 @@
 
     <div class="columns">
         <div class="column is-two-thirds">
-            <div class="title is-2">New User</div>
+            <div class="title is-2">@lang('New User')</div>
             <a href="{{ route('admin.users.index') }}" class="button">
                 <span class="icon">
                   <i class="fa fa-arrow-left"></i>
                 </span>
-                <span>User list</span>
+                <span>@lang('User list')</span>
             </a>
-
-        <!--
-            <a href="{{ route('admin.users.index') }}" class="button is-dark">
-                <span class="icon">
-                  <i class="fa fa-user"></i>
-                </span>
-                <span>@lang('Login as ...')</span>
-            </a>
-            -->
         </div>
     </div>
 
-
-
     <div class="columns">
-
         <div class="column is-half">
             {{ Form::open(['route' => ['admin.users.store'], 'method'=>'post']) }}
             {{ csrf_field() }}
@@ -115,7 +103,6 @@
                 {{Form::label('act_mail', 'Send activation mail', ['class' => 'label'])}}
                 {{Form::checkbox('act_mail', true, false) }}
             </div>
-
 
             {{ form::submit('Create', ['class' => 'button is-primary']) }}
             {{ form::close() }}

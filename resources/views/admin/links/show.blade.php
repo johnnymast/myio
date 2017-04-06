@@ -7,12 +7,12 @@
 
     <div class="columns">
         <div class="column is-two-thirds">
-            <div class="title is-2">Link {{$link->url}}</div>
+            <div class="title is-2">@lang('Link') {{$link->url}}</div>
             <a href="{{ route('admin.links.index') }}" class="button">
                 <span class="icon">
                   <i class="fa fa-arrow-left"></i>
                 </span>
-                <span>Links list</span>
+                <span>@lang('Links list')</span>
             </a>
         </div>
     </div>
@@ -30,7 +30,7 @@
                         <span class="icon is-small">
                           <i class="fa fa-copy"></i>
                         </span>
-                        <span>Copy</span>
+                        <span>@lang('Copy')</span>
                     </button><br />
 
                     @lang('Hits:') {{count($link->hits)}}
@@ -64,7 +64,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td align="center" style="text-align: center" colspan="2">Currently there are no hits</td>
+                        <td align="center" style="text-align: center" colspan="2">@lang('Currently there are no hits')</td>
                     </tr>
                 @endif
                 </tbody>
