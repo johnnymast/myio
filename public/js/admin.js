@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11265,33 +11265,7 @@ window.axios.defaults.headers.common = {
 // });
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(10);
-
-__webpack_require__(2);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('notification', __webpack_require__(33));
-
-var app = new Vue({
-  el: '#app'
-});
-
-/***/ }),
+/* 11 */,
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41113,21 +41087,91 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 38 */,
-/* 39 */
-/***/ (function(module, exports) {
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_admin_admin_users_create_js__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_admin_admin_any_index_js__ = __webpack_require__(52);
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(10);
+
+__webpack_require__(2);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('notification', __webpack_require__(33));
+
+
+
+
+var app = new Vue({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_admin_admin_users_create_js__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_admin_admin_any_index_js__["a" /* default */]],
+  el: '#app'
+});
 
 /***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */
+/* 39 */,
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            admin_user_create_form: {
+                show_opt_actv_mail: false
+            }
+        };
+    },
+    methods: {
+        activateChanged: function activateChanged() {
+            this.admin_user_create_form.show_opt_actv_mail = event.target.value == false;
+        }
+    }
+});
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(38);
 
+
+/***/ }),
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        confirmDeletingItem: function confirmDeletingItem(id, row_id) {
+            if (confirm('Are you sure?')) {
+                document.getElementById(row_id + id).submit();
+            }
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

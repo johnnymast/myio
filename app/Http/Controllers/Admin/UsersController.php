@@ -50,6 +50,7 @@ class UsersController extends Controller
         $user->password = Hash::make($request->password);
         $user->email = $request->email;
         $user->activated = $request->activated;
+        $user->email_token = $user->createEmailToken();
         $user->save();
 
 

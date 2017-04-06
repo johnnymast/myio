@@ -93,6 +93,21 @@ class User extends Authenticatable
     }
 
     /**
+     * Create a unique email token.
+     *
+     * @return int
+     */
+    public function createEmailToken() {
+        $token = str_random(config('myio.general.mail_token_length'));
+
+        if (self::whereEmailToken($token)->exists()) {
+            return $this->generateUniqueHash();
+        }
+
+        return $token;
+    }
+
+    /**
      * Verify a user.
      */
     public function verified()

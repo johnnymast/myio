@@ -20,7 +20,7 @@
 </div>
 @include('layouts.partials.admin._footer')
 
-<script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ mix('/js/admin.js') }}"></script>
 
 @yield('footer.scripts')
 </body>

@@ -44,7 +44,7 @@
                             {{ csrf_field() }}
 
                             <a href="#" class="button is-danger is-outlined"
-                               onclick="return confirmDelete({{$user['id']}});">
+                               @click="confirmDeletingItem({{$user['id']}}, 'user_row');">
                                 <span>Delete</span>
                                 <span class="icon is-small">
                                   <i class="fa fa-times"></i>
@@ -67,16 +67,4 @@
     </div>
     {{$users->links('layouts.partials.admin._pagination')}}
 
-    <strong>TODO:</strong>
-    <ol>
-        <li>Create: Make mail token</li>
-        <li>Create: Only provide the email activation link IF the active is set to no.</li>
-    </ol>
-    <script>
-        function confirmDelete(user_id) {
-            if (confirm('Are you sure to delete this user?')) {
-                document.getElementById('user_row' + user_id).submit();
-            }
-        }
-    </script>
 @endsection

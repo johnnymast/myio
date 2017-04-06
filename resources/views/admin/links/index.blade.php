@@ -42,7 +42,7 @@
                             {{ csrf_field() }}
 
                             <a href="#" class="button is-danger is-outlined"
-                               onclick="return confirmDelete({{$link['id']}});">
+                               @click="confirmDeletingItem({{$link['id']}}, 'link_row');">
                                 <span>Delete</span>
                                 <span class="icon is-small">
                                   <i class="fa fa-times"></i>
@@ -67,11 +67,4 @@
     <ol>
         <li>Some todo here</li>
     </ol>
-    <script>
-        function confirmDelete(user_id) {
-            if (confirm('Are you sure to delete this user?')) {
-                document.getElementById('link_row' + user_id).submit();
-            }
-        }
-    </script>
 @endsection
