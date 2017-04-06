@@ -30,14 +30,14 @@ Route::group([
     'prefix' => '/admin',
     'middleware' => ['auth'],
 ], function () {
-    Route::resource('links', 'admin\LinksController', [
+    Route::resource('links', 'Admin\LinksController', [
         'names' => [
             'index' => 'admin.links.index',
             'show' => 'admin.links.show',
             'destroy' => 'admin.links.destroy',
         ]
     ]);
-    Route::resource('users', 'admin\UsersController', [
+    Route::resource('users', 'Admin\UsersController', [
         'names' => [
             'index' => 'admin.users.index',
             'edit' => 'admin.users.edit',
@@ -47,7 +47,7 @@ Route::group([
             'store' => 'admin.users.store',
         ]
     ]);
-    Route::get('/', 'admin\DashboardController@index')->name('admin.dashboard.index');
+    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 });
 
 /*
