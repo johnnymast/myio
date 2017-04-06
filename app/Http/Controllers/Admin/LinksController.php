@@ -7,6 +7,7 @@ use App\Session\Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Link;
+use App\Hit;
 
 class LinksController extends Controller
 {
@@ -21,28 +22,6 @@ class LinksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // Show create create link form
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param LinksRequest|Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(LinksRequest $request)
-    {
-        // Store the link
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param Link $link
@@ -52,35 +31,8 @@ class LinksController extends Controller
      */
     public function show(Link $link)
     {
-        // Show a link
-        dd($link);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Link $link
-     *
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
-     */
-    public function edit(Link $link)
-    {
-        // edit this link
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param LinksRequest|Request $request
-     * @param Link $link
-     *
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
-     */
-    public function update(LinksRequest $request, Link $link)
-    {
-        // Update the link
+        $hits = Hit::where('link_id', $link->id)->paginate(config('myio.admin.pagination.items_per_page'));
+        return view('admin.links.show', compact('link', 'hits'));
     }
 
     /**

@@ -20,6 +20,7 @@
 </div>
 @include('layouts.partials.admin._footer')
 
+<script src="/js/clipboard.min.js"></script>
 <script src="{{ mix('/js/admin.js') }}"></script>
 
 @yield('footer.scripts')

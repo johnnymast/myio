@@ -5,6 +5,10 @@
                 <img src="/images/bulma.png" alt="Description">
             </a>
         </div>
+        <div class="nav-right">
+            <a class="nav-item" href="{{ route('user.logout') }}">Logout</a>
+        </div>
+
         <span class="nav-toggle">
         <span></span>
         <span></span>

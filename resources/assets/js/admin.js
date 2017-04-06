@@ -16,8 +16,8 @@ require('jquery');
 
 Vue.component('notification', require('./components/Notification.vue'));
 
-import admin_users_create from './mixins/admin/admin_users_create.js';
-import admin_any_index from './mixins/admin/admin_any_index.js';
+import admin_users_create from './mixins/admin/admin_users_create';
+import admin_any_index from './mixins/admin/admin_any_index';
 
 const app = new Vue({
     mixins: [admin_users_create, admin_any_index],

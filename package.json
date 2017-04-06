@@ -17,6 +17,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "bulma": "^0.3.2"
+    "bulma": "^0.3.2",
+    "clipboard": "^1.6.1"
   }
 }
