@@ -24,23 +24,37 @@ Route::get('/home', function () {
 })->middleware('auth')->name('home');
 
 /*
- * Admin routes
+ * admin routes
  */
 Route::group([
-    'prefix'     => '/admin',
+    'prefix' => '/admin',
     'middleware' => ['auth'],
 ], function () {
-    Route::resource('links', 'Admin\LinksController');
-    Route::resource('users', 'Admin\UsersController');
-    Route::resource('settings', 'Admin\SettingsController');
-    Route::get('/', 'Admin\DashboardController@index');
+    Route::resource('links', 'Admin\LinksController', [
+        'names' => [
+            'index' => 'admin.links.index',
+            'show' => 'admin.links.show',
+            'destroy' => 'admin.links.destroy',
+        ]
+    ]);
+    Route::resource('users', 'Admin\UsersController', [
+        'names' => [
+            'index' => 'admin.users.index',
+            'edit' => 'admin.users.edit',
+            'create' => 'admin.users.create',
+            'destroy' => 'admin.users.destroy',
+            'update' => 'admin.users.update',
+            'store' => 'admin.users.store',
+        ]
+    ]);
+    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 });
 
 /*
  * User Dashboard
  */
 Route::group([
-    'prefix'     => '/dashboard',
+    'prefix' => '/dashboard',
     'middleware' => ['auth'],
 ], function () {
     Route::resource('links', 'UserDashboardController');

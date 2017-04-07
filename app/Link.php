@@ -63,7 +63,7 @@ class Link extends Model
      */
     private function generateUniqueHash()
     {
-        $number = mt_rand(1000, 999999); // better than rand()
+        $number = str_random(config('myio.general.hash_length')); // better than rand()
 
         if (self::whereHash($number)->exists()) {
             return $this->generateUniqueHash();

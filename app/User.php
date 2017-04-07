@@ -19,6 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'email_token',
+        'activated',
     ];
 
     /**
@@ -89,6 +90,21 @@ class User extends Authenticatable
     public function removeRole($role)
     {
         return $this->roles()->detach($role);
+    }
+
+    /**
+     * Create a unique email token.
+     *
+     * @return int
+     */
+    public function createEmailToken() {
+        $token = str_random(config('myio.general.mail_token_length'));
+
+        if (self::whereEmailToken($token)->exists()) {
+            return $this->generateUniqueHash();
+        }
+
+        return $token;
     }
 
     /**

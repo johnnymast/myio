@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 43);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -41086,11 +41086,13 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 37 */,
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_admin_admin_users_create__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_admin_admin_any_index__ = __webpack_require__(40);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -41109,25 +41111,56 @@ __webpack_require__(2);
 
 Vue.component('notification', __webpack_require__(32));
 
+
+
+
 var app = new Vue({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_admin_admin_users_create__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_admin_admin_any_index__["a" /* default */]],
   el: '#app'
 });
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports) {
+/* 38 */,
+/* 39 */,
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        confirmDeletingItem: function confirmDeletingItem(id, row_id) {
+            if (confirm('Are you sure?')) {
+                document.getElementById(row_id + id).submit();
+            }
+        }
+    }
+});
 
 /***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            admin_user_create_form: {
+                show_opt_actv_mail: false
+            }
+        };
+    },
+    methods: {
+        activateChanged: function activateChanged() {
+            this.admin_user_create_form.show_opt_actv_mail = event.target.value == false;
+        }
+    }
+});
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(38);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(37);
 
 
 /***/ })

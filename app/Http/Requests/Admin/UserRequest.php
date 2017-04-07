@@ -14,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,29 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:255',
-            'email' => [
-                'required',
-                Rule::unique('users')->ignore(auth()->user()->id),
-                'max:255'
-            ],
-            'password' => 'required_with:password_again',
-            'password_again' => 'required_with:password',
-        ];
+        if (request()->route('user')) {
+            return [
+                'name' => 'required|max:255',
+                'email' => [
+                    'required',
+                    Rule::unique('users')->ignore(request()->route('user')->id),
+                    'max:255'
+                ],
+                'password' => 'required_with:password_again',
+                'password_again' => 'required_with:password',
+            ];
+        } else {
+            return [
+                'name' => 'required|max:255',
+                'email' => [
+                    'required',
+                    'unique:users',
+                    'max:255'
+                ],
+                'password' => 'required',
+                'password_again' => 'required_with:password',
+            ];
+        }
     }
+
 }

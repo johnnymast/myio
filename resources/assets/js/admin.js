@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -17,6 +16,10 @@ require('jquery');
 
 Vue.component('notification', require('./components/Notification.vue'));
 
+import admin_users_create from './mixins/admin/admin_users_create';
+import admin_any_index from './mixins/admin/admin_any_index';
+
 const app = new Vue({
+    mixins: [admin_users_create, admin_any_index],
     el: '#app',
 });

@@ -17,7 +17,7 @@ class UserRoleTest extends TestCase
         $role = factory(Role::class)->create();
 
         $user = factory(User::class)->create([
-            'name'  => 'Jonny Admin',
+            'name'  => 'Jonny admin',
             'email' => 'jonny@myio.com',
         ]);
 
