@@ -31,12 +31,12 @@ class SecureAdmin
     {
         // If the auth user is null, redirect to home page
         if (is_null($this->auth->user())) {
-            return redirect()->route('homepage');
+            abort(404, 'Page not found');
         }
 
         // Allow access only to administrators
         if (! $this->auth->user()->hasRole('Administrator')) {
-            return redirect()->route('home');
+            abort(404, 'You are not authorized to view requested resource.');
         }
 
         return $next($request);
