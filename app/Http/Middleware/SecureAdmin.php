@@ -30,13 +30,8 @@ class SecureAdmin
     public function handle($request, Closure $next)
     {
         // If the auth user is null, redirect to home page
-        if (is_null($this->auth->user())) {
+        if (is_null($this->auth->user()) || (! $this->auth->user()->hasRole('Administrator'))) {
             abort(404, 'Page not found');
-        }
-
-        // Allow access only to administrators
-        if (! $this->auth->user()->hasRole('Administrator')) {
-            abort(404, 'You are not authorized to view requested resource.');
         }
 
         return $next($request);
