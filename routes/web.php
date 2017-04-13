@@ -21,14 +21,14 @@ Route::get('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@lo
 
 Route::get('/home', function () {
     return redirect()->route('url_create');
-})->name('home');
+})->middleware('auth')->name('home');
 
 /*
  * admin routes
  */
 Route::group([
     'prefix' => '/admin',
-    'middleware' => ['auth.admin'],
+    'middleware' => ['auth'],
 ], function () {
     Route::resource('links', 'Admin\LinksController', [
         'names' => [
