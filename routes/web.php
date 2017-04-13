@@ -28,7 +28,7 @@ Route::get('/home', function () {
  */
 Route::group([
     'prefix' => '/admin',
-    'middleware' => ['auth'],
+    'middleware' => ['auth.admin'],
 ], function () {
     Route::resource('links', 'Admin\LinksController', [
         'names' => [
