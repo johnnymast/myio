@@ -97,7 +97,8 @@ class User extends Authenticatable
      *
      * @return int
      */
-    public function createEmailToken() {
+    public function createEmailToken()
+    {
         $token = str_random(config('myio.general.mail_token_length'));
 
         if (self::whereEmailToken($token)->exists()) {

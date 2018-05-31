@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Notifications\EmailVerification;
 use App\Role;
+use App\Session\Flash;
 use App\User;
 use Illuminate\Http\Request;
-use App\Session\Flash;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
@@ -22,7 +21,6 @@ class UsersController extends Controller
     {
         return view('admin.users.index', ['users' => User::paginate(config('myio.admin.pagination.items_per_page'))]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +32,6 @@ class UsersController extends Controller
             'roles' => Role::all(),
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -53,7 +50,6 @@ class UsersController extends Controller
         $user->email_token = $user->createEmailToken();
         $user->save();
 
-
         $user->assignRole(Role::find($request->role));
         $user->save();
 
@@ -69,7 +65,6 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users.edit', $user['id']);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -87,7 +82,6 @@ class UsersController extends Controller
         ]);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -101,7 +95,7 @@ class UsersController extends Controller
     {
         $user->fill(['name' => $request->name, 'email' => $request->email, 'activated' => $request->activated])->save();
 
-        if (!empty($request->password)) {
+        if (! empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
 
@@ -114,10 +108,8 @@ class UsersController extends Controller
             Flash::error('Could not update this user.');
         }
 
-
         return redirect()->route('admin.users.edit', $user['id']);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -129,7 +121,6 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-
         if ($user->delete()) {
             Flash::success('User deleted.');
         } else {

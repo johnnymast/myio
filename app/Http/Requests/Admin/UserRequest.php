@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
                 'email' => [
                     'required',
                     Rule::unique('users')->ignore(request()->route('user')->id),
-                    'max:255'
+                    'max:255',
                 ],
                 'password' => 'required_with:password_again',
                 'password_again' => 'required_with:password',
@@ -41,12 +41,11 @@ class UserRequest extends FormRequest
                 'email' => [
                     'required',
                     'unique:users',
-                    'max:255'
+                    'max:255',
                 ],
                 'password' => 'required',
                 'password_again' => 'required_with:password',
             ];
         }
     }
-
 }
