@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\LinksRequest;
-use App\Session\Flash;
-use Illuminate\Http\Request;
+use App\Hit;
 use App\Http\Controllers\Controller;
 use App\Link;
-use App\Hit;
+use App\Session\Flash;
 
 class LinksController extends Controller
 {

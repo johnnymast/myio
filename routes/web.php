@@ -35,7 +35,7 @@ Route::group([
             'index' => 'admin.links.index',
             'show' => 'admin.links.show',
             'destroy' => 'admin.links.destroy',
-        ]
+        ],
     ]);
     Route::resource('users', 'Admin\UsersController', [
         'names' => [
@@ -45,7 +45,7 @@ Route::group([
             'destroy' => 'admin.users.destroy',
             'update' => 'admin.users.update',
             'store' => 'admin.users.store',
-        ]
+        ],
     ]);
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 });

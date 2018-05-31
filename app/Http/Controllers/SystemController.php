@@ -7,7 +7,6 @@ use App\Link;
 
 class SystemController extends Controller
 {
-
     /**
      * Log the hit and redirect to the url.
      *
@@ -25,7 +24,6 @@ class SystemController extends Controller
         return redirect($link->url);
     }
 
-
     /**
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response
@@ -34,7 +32,6 @@ class SystemController extends Controller
     {
         return view('dashboard.links.create');
     }
-
 
     /**
      * Store a newly created resource in storage.
